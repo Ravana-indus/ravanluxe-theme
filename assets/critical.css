@@ -192,3 +192,76 @@ button.button--secondary:hover {
 .shopify-section > .full-width {
   grid-column: 1 / -1;
 }
+
+/** Mobile Layout - 100% full width to edges */
+@media (max-width: 768px) {
+  .shopify-section {
+    /* Override grid system for mobile to use 100% width */
+    --content-width: 100%;
+    --content-margin: 0;
+    --content-grid: var(--content-margin) var(--content-width) var(--content-margin);
+  }
+
+  /* Ensure all sections use the mobile layout */
+  .shopify-section > * {
+    grid-column: 2;
+    width: 100%;
+  }
+
+  /* Full-width elements should span the entire viewport */
+  .shopify-section > .full-width {
+    grid-column: 1 / -1;
+    width: 100%;
+    margin: 0;
+  }
+
+  /* Global mobile padding override for any remaining elements */
+  [class*="__container"],
+  [class*="page"],
+  [class*="section"] {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  /* Override any var(--page-margin) usage in mobile */
+  * {
+    --page-margin: 0 !important;
+  }
+
+  /* Text content max-width constraints for readability */
+  h1, h2, h3, h4, h5, h6,
+  p, span, div,
+  .header__logo-text,
+  .header__tagline,
+  .footer__logo,
+  .footer__tagline,
+  .footer__story,
+  .footer__menu,
+  .product-page-luxury,
+  .cart-page__title,
+  .cart-page__empty {
+    max-width: 98% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* Specific text containers with better readability */
+  .header__container,
+  .footer__container,
+  .product-page-luxury,
+  .cart-page__container {
+    text-align: center;
+  }
+
+  .header__container > *,
+  .footer__container > *,
+  .product-page-luxury > *,
+  .cart-page__container > * {
+    max-width: 98%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

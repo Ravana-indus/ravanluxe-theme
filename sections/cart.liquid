@@ -112,9 +112,21 @@
   }
 
   .cart-page__container {
-    max-width: var(--page-width);
-    margin: 0 auto;
-    padding: 0 var(--page-margin);
+    max-width: none;
+    margin: 0;
+    padding: 0 1rem;
+    width: 100%;
+  }
+
+  .cart-page__title,
+  .cart-page__empty h1,
+  .cart-page__empty p,
+  .cart-item__title,
+  .cart-item__variant,
+  .cart-item__price {
+    max-width: 98%;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .cart-page__title {
@@ -312,9 +324,10 @@
   /* Empty Cart */
   .cart-page__empty {
     text-align: center;
-    padding: 6rem var(--page-margin);
-    max-width: 600px;
-    margin: 0 auto;
+    padding: 6rem 1rem;
+    max-width: none;
+    margin: 0;
+    width: 100%;
   }
 
   .cart-empty__title {
