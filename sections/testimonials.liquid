@@ -1,0 +1,199 @@
+<div class="testimonials">
+  <div class="testimonials__header">
+    {% if section.settings.title %}
+      <h2 class="testimonials__title">{{ section.settings.title }}</h2>
+    {% endif %}
+    {% if section.settings.subtitle %}
+      <p class="testimonials__subtitle">{{ section.settings.subtitle }}</p>
+    {% endif %}
+  </div>
+
+  <div class="testimonials__grid">
+    {% for block in section.blocks %}
+      <div class="testimonial-card" {{ block.shopify_attributes }}>
+        {% if block.settings.stars > 0 %}
+          <div class="testimonial-card__stars">
+            {% for i in (1..block.settings.stars) %}
+              <span class="star">★</span>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        {% if block.settings.quote %}
+          <blockquote class="testimonial-card__quote">
+            "{{ block.settings.quote }}"
+          </blockquote>
+        {% endif %}
+
+        <div class="testimonial-card__author">
+          {% if block.settings.author_name %}
+            <p class="testimonial-card__name">{{ block.settings.author_name }}</p>
+          {% endif %}
+          {% if block.settings.author_title %}
+            <p class="testimonial-card__title">{{ block.settings.author_title }}</p>
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% stylesheet %}
+  .testimonials {
+    padding: 6rem 0;
+    max-width: var(--page-width);
+    margin: 0 auto;
+    padding-left: var(--page-margin);
+    padding-right: var(--page-margin);
+  }
+
+  .testimonials__header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .testimonials__title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 1rem;
+  }
+
+  .testimonials__subtitle {
+    font-size: 1.125rem;
+    letter-spacing: 0.05em;
+    opacity: 0.8;
+  }
+
+  .testimonials__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .testimonial-card {
+    background-color: var(--color-secondary-background);
+    padding: 2.5rem;
+    text-align: center;
+  }
+
+  .testimonial-card__stars {
+    margin-bottom: 1.5rem;
+  }
+
+  .testimonial-card__stars .star {
+    color: var(--color-accent);
+    font-size: 1.25rem;
+    margin: 0 0.125rem;
+  }
+
+  .testimonial-card__quote {
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    font-style: italic;
+    opacity: 0.9;
+  }
+
+  .testimonial-card__name {
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.25rem;
+  }
+
+  .testimonial-card__title {
+    font-size: 0.8125rem;
+    letter-spacing: 0.05em;
+    opacity: 0.7;
+  }
+
+  @media (max-width: 768px) {
+    .testimonials {
+      padding: 4rem var(--page-margin);
+    }
+
+    .testimonials__header {
+      margin-bottom: 2.5rem;
+    }
+
+    .testimonials__grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .testimonial-card {
+      padding: 2rem;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "What Our Customers Say"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Hear from those who wear Tamil heritage"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote",
+          "default": "Beautiful craftsmanship and attention to detail. Truly luxury wear."
+        },
+        {
+          "type": "text",
+          "id": "author_name",
+          "label": "Author name",
+          "default": "Customer Name"
+        },
+        {
+          "type": "text",
+          "id": "author_title",
+          "label": "Author title",
+          "default": "Verified Buyer"
+        },
+        {
+          "type": "range",
+          "id": "stars",
+          "label": "Star rating",
+          "min": 0,
+          "max": 5,
+          "step": 1,
+          "default": 5
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials",
+      "blocks": [
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "testimonial"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

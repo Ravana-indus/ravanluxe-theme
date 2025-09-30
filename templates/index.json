@@ -1,0 +1,62 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "tagline": "New Collection 2024",
+        "title": "Tamil Heritage",
+        "subtitle": "Luxury designer wear that celebrates culture and craftsmanship",
+        "button_text": "Explore Collection",
+        "button_link": "/collections/all"
+      }
+    },
+    "featured-collection-1": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Featured Collection",
+        "description": "Discover our latest designs that blend traditional Tamil artistry with contemporary luxury",
+        "products_to_show": 4,
+        "show_view_all": true,
+        "button_text": "View All Products"
+      }
+    },
+    "tamil-motif": {
+      "type": "tamil-motif",
+      "settings": {
+        "title": "Celebrating Heritage",
+        "tamil_text": "தமிழ் பாரம்பரியம்",
+        "description": "Every design is a tribute to the rich cultural heritage of Tamil Nadu, woven with stories of tradition and timeless elegance.",
+        "motif_color": "#D4AF37"
+      }
+    },
+    "image-text": {
+      "type": "image-text",
+      "settings": {
+        "tagline": "Craftsmanship",
+        "title": "Handcrafted Excellence",
+        "text": "<p>Each piece is meticulously crafted by skilled artisans, ensuring the highest quality and attention to detail.</p>",
+        "button_text": "Our Story",
+        "button_link": "/pages/about",
+        "text_alignment": "left",
+        "background_color": "#FFFFFF"
+      }
+    },
+    "featured-collection-2": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "New Arrivals",
+        "description": "Be the first to discover our newest pieces",
+        "products_to_show": 4,
+        "show_view_all": true,
+        "button_text": "Shop New Arrivals"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "featured-collection-1",
+    "tamil-motif",
+    "image-text",
+    "featured-collection-2"
+  ]
+}

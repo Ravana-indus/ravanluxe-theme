@@ -1,0 +1,331 @@
+<footer class="footer full-width">
+  <div class="footer__container">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <h2 class="footer__logo">{{ shop.name }}</h2>
+        <p class="footer__tagline">{{ settings.brand_tagline }}</p>
+        {% if settings.brand_story %}
+          <p class="footer__story">{{ settings.brand_story }}</p>
+        {% endif %}
+      </div>
+
+      <div class="footer__links">
+        <div class="footer__column">
+          <h3 class="footer__title">Shop</h3>
+          <ul class="footer__menu">
+            {% for link in section.settings.menu_shop.links %}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <div class="footer__column">
+          <h3 class="footer__title">About</h3>
+          <ul class="footer__menu">
+            {% for link in section.settings.menu_about.links %}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <div class="footer__column">
+          <h3 class="footer__title">Customer Care</h3>
+          <ul class="footer__menu">
+            {% for link in section.settings.menu_customer.links %}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <div class="footer__column">
+          <h3 class="footer__title">Connect</h3>
+          <div class="footer__social">
+            {% if section.settings.social_instagram %}
+              <a href="{{ section.settings.social_instagram }}" target="_blank" rel="noopener" aria-label="Instagram">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.5"/>
+                  <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5"/>
+                  <circle cx="18" cy="6" r="1" fill="currentColor"/>
+                </svg>
+              </a>
+            {% endif %}
+            {% if section.settings.social_facebook %}
+              <a href="{{ section.settings.social_facebook }}" target="_blank" rel="noopener" aria-label="Facebook">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            {% endif %}
+            {% if section.settings.social_twitter %}
+              <a href="{{ section.settings.social_twitter }}" target="_blank" rel="noopener" aria-label="Twitter">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            {% endif %}
+          </div>
+          {% if section.settings.show_newsletter %}
+            <div class="footer__newsletter">
+              <p>Subscribe to our newsletter</p>
+              <form action="/contact#newsletter" method="post" class="footer__newsletter-form">
+                <input type="email" name="contact[email]" placeholder="Email address" required>
+                <button type="submit" aria-label="Subscribe">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M5 10h10M10 5l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              </form>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p class="footer__copyright">© {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.</p>
+      <div class="footer__payment">
+        {% for type in shop.enabled_payment_types %}
+          {{ type | payment_type_svg_tag }}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% stylesheet %}
+  .footer {
+    background-color: var(--color-secondary-background);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin-top: 6rem;
+  }
+
+  .footer__container {
+    max-width: var(--page-width);
+    margin: 0 auto;
+    padding: 4rem var(--page-margin) 2rem;
+  }
+
+  .footer__top {
+    display: grid;
+    grid-template-columns: 1.5fr 2fr;
+    gap: 4rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .footer__brand {
+    max-width: 400px;
+  }
+
+  .footer__logo {
+    font-size: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .footer__tagline {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    opacity: 0.7;
+  }
+
+  .footer__story {
+    font-size: 0.875rem;
+    line-height: 1.8;
+    opacity: 0.8;
+  }
+
+  .footer__links {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+
+  .footer__column {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .footer__title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  .footer__menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer__menu li {
+    margin-bottom: 0.75rem;
+  }
+
+  .footer__menu a {
+    font-size: 0.875rem;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+  }
+
+  .footer__menu a:hover {
+    opacity: 1;
+  }
+
+  .footer__social {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .footer__social a {
+    transition: opacity 0.3s ease;
+  }
+
+  .footer__social a:hover {
+    opacity: 0.6;
+  }
+
+  .footer__newsletter p {
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+  }
+
+  .footer__newsletter-form {
+    display: flex;
+    border: 1px solid var(--color-foreground);
+  }
+
+  .footer__newsletter-form input {
+    flex: 1;
+    border: none;
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    background: transparent;
+  }
+
+  .footer__newsletter-form input:focus {
+    outline: none;
+    border: none;
+  }
+
+  .footer__newsletter-form button {
+    background: var(--color-foreground);
+    color: var(--color-background);
+    border: none;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .footer__newsletter-form button:hover {
+    opacity: 0.8;
+  }
+
+  .footer__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 2rem;
+  }
+
+  .footer__copyright {
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    opacity: 0.7;
+  }
+
+  .footer__payment {
+    display: flex;
+    gap: 0.5rem;
+    opacity: 0.7;
+  }
+
+  .footer__payment svg {
+    height: 24px;
+    width: auto;
+  }
+
+  @media (max-width: 1024px) {
+    .footer__top {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .footer__links {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .footer__container {
+      padding: 3rem var(--page-margin) 2rem;
+    }
+
+    .footer__links {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .footer__bottom {
+      flex-direction: column;
+      gap: 1.5rem;
+      text-align: center;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Footer Enhanced",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu_shop",
+      "label": "Shop menu",
+      "default": "footer"
+    },
+    {
+      "type": "link_list",
+      "id": "menu_about",
+      "label": "About menu"
+    },
+    {
+      "type": "link_list",
+      "id": "menu_customer",
+      "label": "Customer care menu"
+    },
+    {
+      "type": "header",
+      "content": "Social Media"
+    },
+    {
+      "type": "url",
+      "id": "social_instagram",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "url",
+      "id": "social_facebook",
+      "label": "Facebook URL"
+    },
+    {
+      "type": "url",
+      "id": "social_twitter",
+      "label": "Twitter URL"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_newsletter",
+      "label": "Show newsletter signup",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

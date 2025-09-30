@@ -1,0 +1,181 @@
+<div class="image-text full-width" style="--bg-color: {{ section.settings.background_color }}">
+  <div class="image-text__container">
+    <div class="image-text__content" style="--text-align: {{ section.settings.text_alignment }}">
+      {% if section.settings.tagline %}
+        <p class="image-text__tagline">{{ section.settings.tagline }}</p>
+      {% endif %}
+
+      {% if section.settings.title %}
+        <h2 class="image-text__title">{{ section.settings.title }}</h2>
+      {% endif %}
+
+      {% if section.settings.text %}
+        <div class="image-text__text">{{ section.settings.text }}</div>
+      {% endif %}
+
+      {% if section.settings.button_text %}
+        <a href="{{ section.settings.button_link }}" class="image-text__button">
+          {{ section.settings.button_text }}
+        </a>
+      {% endif %}
+    </div>
+
+    {% if section.settings.image %}
+      <div class="image-text__image">
+        {{ section.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy' }}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% stylesheet %}
+  .image-text {
+    background-color: var(--bg-color);
+    padding: 6rem 0;
+  }
+
+  .image-text__container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    max-width: var(--page-width);
+    margin: 0 auto;
+    padding: 0 var(--page-margin);
+  }
+
+  .image-text__content {
+    text-align: var(--text-align);
+  }
+
+  .image-text__tagline {
+    font-size: 0.875rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    opacity: 0.7;
+  }
+
+  .image-text__title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+  }
+
+  .image-text__text {
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+  }
+
+  .image-text__button {
+    display: inline-block;
+    background-color: var(--color-foreground);
+    color: var(--color-background);
+    padding: 1.25rem 3rem;
+    font-size: 0.875rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border: 1px solid var(--color-foreground);
+    transition: all 0.4s ease;
+  }
+
+  .image-text__button:hover {
+    background-color: transparent;
+    color: var(--color-foreground);
+  }
+
+  .image-text__image {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .image-text__image img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.6s ease;
+  }
+
+  .image-text:hover .image-text__image img {
+    transform: scale(1.05);
+  }
+
+  @media (max-width: 768px) {
+    .image-text {
+      padding: 4rem 0;
+    }
+
+    .image-text__container {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .image-text__content {
+      text-align: center !important;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Image with Text",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "Tagline",
+      "default": "Heritage"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Celebrating Tamil Culture"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Our designs blend traditional Tamil artistry with contemporary luxury fashion.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Learn More"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#FFFFFF"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image with Text"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "main": {
+      "type": "collections-list",
+      "settings": {
+        "title": "Collections",
+        "description": "Explore our curated collections of Tamil heritage luxury wear"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

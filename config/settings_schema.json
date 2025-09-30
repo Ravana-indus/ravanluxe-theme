@@ -1,0 +1,125 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Ravan Luxe",
+    "theme_version": "1.0.0",
+    "theme_author": "Ravan Luxe",
+    "theme_documentation_url": "https://help.shopify.com/manual/online-store/themes",
+    "theme_support_url": "https://support.shopify.com/"
+  },
+  {
+    "name": "t:general.typography",
+    "settings": [
+      {
+        "type": "header",
+        "content": "t:general.fonts"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_primary_font",
+        "default": "futura_n4",
+        "label": "t:general.primary",
+        "info": "Primary font for body text"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_heading_font",
+        "default": "futura_n7",
+        "label": "Heading font",
+        "info": "Font for headings and titles"
+      }
+    ]
+  },
+  {
+    "name": "t:general.layout",
+    "settings": [
+      {
+        "type": "select",
+        "id": "max_page_width",
+        "label": "t:labels.page_width",
+        "options": [
+          {
+            "value": "90rem",
+            "label": "t:options.page_width.narrow"
+          },
+          {
+            "value": "110rem",
+            "label": "t:options.page_width.wide"
+          },
+          {
+            "value": "140rem",
+            "label": "Extra wide"
+          }
+        ],
+        "default": "110rem"
+      },
+      {
+        "type": "range",
+        "id": "min_page_margin",
+        "min": 20,
+        "max": 100,
+        "step": 5,
+        "unit": "px",
+        "label": "t:labels.page_margin",
+        "default": 40
+      }
+    ]
+  },
+  {
+    "name": "t:general.colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "background_color",
+        "default": "#FFFFFF",
+        "label": "t:labels.background"
+      },
+      {
+        "type": "color",
+        "id": "foreground_color",
+        "default": "#1A1A1A",
+        "label": "t:labels.foreground"
+      },
+      {
+        "type": "color",
+        "id": "accent_color",
+        "default": "#D4AF37",
+        "label": "Accent color",
+        "info": "Used for buttons and highlights"
+      },
+      {
+        "type": "color",
+        "id": "secondary_background",
+        "default": "#F5F5F5",
+        "label": "Secondary background"
+      },
+      {
+        "type": "range",
+        "id": "input_corner_radius",
+        "min": 0,
+        "max": 10,
+        "step": 1,
+        "unit": "px",
+        "label": "t:labels.input_corner_radius",
+        "default": 0
+      }
+    ]
+  },
+  {
+    "name": "Brand Identity",
+    "settings": [
+      {
+        "type": "text",
+        "id": "brand_tagline",
+        "label": "Brand tagline",
+        "default": "Proudly Wear Tamil Heritage"
+      },
+      {
+        "type": "textarea",
+        "id": "brand_story",
+        "label": "Brand story",
+        "default": "Ravan Luxe celebrates the timeless elegance of Tamil heritage through contemporary luxury fashion. Each piece tells a story of tradition, craftsmanship, and modern sophistication."
+      }
+    ]
+  }
+]

@@ -1,0 +1,173 @@
+<div class="tamil-motif full-width" style="--motif-color: {{ section.settings.motif_color }}">
+  <div class="tamil-motif__container">
+    <div class="tamil-motif__content">
+      {% if section.settings.title %}
+        <h2 class="tamil-motif__title">{{ section.settings.title }}</h2>
+      {% endif %}
+
+      {% if section.settings.tamil_text %}
+        <p class="tamil-motif__tamil">{{ section.settings.tamil_text }}</p>
+      {% endif %}
+
+      {% if section.settings.description %}
+        <p class="tamil-motif__description">{{ section.settings.description }}</p>
+      {% endif %}
+    </div>
+
+    <div class="tamil-motif__pattern">
+      <svg class="kolam-pattern" viewBox="0 0 200 200" fill="none">
+        <!-- Traditional Tamil Kolam-inspired pattern -->
+        <circle cx="100" cy="100" r="80" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+        <circle cx="100" cy="100" r="60" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+        <circle cx="100" cy="100" r="40" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+        <circle cx="100" cy="100" r="20" stroke="currentColor" stroke-width="1" opacity="0.6"/>
+
+        <path d="M100 20 L180 100 L100 180 L20 100 Z" stroke="currentColor" stroke-width="1" fill="none" opacity="0.4"/>
+        <path d="M100 40 L160 100 L100 160 L40 100 Z" stroke="currentColor" stroke-width="1" fill="none" opacity="0.5"/>
+
+        <circle cx="100" cy="20" r="5" fill="currentColor" opacity="0.6"/>
+        <circle cx="180" cy="100" r="5" fill="currentColor" opacity="0.6"/>
+        <circle cx="100" cy="180" r="5" fill="currentColor" opacity="0.6"/>
+        <circle cx="20" cy="100" r="5" fill="currentColor" opacity="0.6"/>
+
+        <circle cx="142" cy="58" r="5" fill="currentColor" opacity="0.5"/>
+        <circle cx="142" cy="142" r="5" fill="currentColor" opacity="0.5"/>
+        <circle cx="58" cy="142" r="5" fill="currentColor" opacity="0.5"/>
+        <circle cx="58" cy="58" r="5" fill="currentColor" opacity="0.5"/>
+      </svg>
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .tamil-motif {
+    padding: 8rem 0;
+    background: linear-gradient(135deg, var(--color-background) 0%, var(--color-secondary-background) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tamil-motif__container {
+    max-width: var(--page-width);
+    margin: 0 auto;
+    padding: 0 var(--page-margin);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .tamil-motif__content {
+    text-align: left;
+  }
+
+  .tamil-motif__title {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    margin-bottom: 2rem;
+    line-height: 1.2;
+  }
+
+  .tamil-motif__tamil {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    font-family: "Noto Sans Tamil", sans-serif;
+    color: var(--motif-color);
+    font-weight: 500;
+  }
+
+  .tamil-motif__description {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    opacity: 0.9;
+  }
+
+  .tamil-motif__pattern {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .kolam-pattern {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    color: var(--motif-color);
+    animation: rotateKolam 30s linear infinite;
+  }
+
+  @keyframes rotateKolam {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .tamil-motif {
+      padding: 4rem 0;
+    }
+
+    .tamil-motif__container {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      text-align: center;
+    }
+
+    .tamil-motif__content {
+      text-align: center;
+    }
+
+    .kolam-pattern {
+      max-width: 250px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .kolam-pattern {
+      animation: none;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Tamil Heritage Motif",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Celebrating Heritage"
+    },
+    {
+      "type": "textarea",
+      "id": "tamil_text",
+      "label": "Tamil text",
+      "default": "தமிழ் பாரம்பரியம்",
+      "info": "Tamil script text to display"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Every design is a tribute to the rich cultural heritage of Tamil Nadu, woven with stories of tradition and timeless elegance."
+    },
+    {
+      "type": "color",
+      "id": "motif_color",
+      "label": "Motif color",
+      "default": "#D4AF37"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Tamil Heritage Motif"
+    }
+  ]
+}
+{% endschema %}

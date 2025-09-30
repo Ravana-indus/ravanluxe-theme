@@ -1,0 +1,195 @@
+<div class="video-banner full-width">
+  <div class="video-banner__container">
+    {% if section.settings.video_url != blank %}
+      <div class="video-banner__video">
+        <video
+          autoplay
+          muted
+          loop
+          playsinline
+          class="video-banner__video-element"
+        >
+          <source src="{{ section.settings.video_url }}" type="video/mp4">
+        </video>
+      </div>
+    {% elsif section.settings.image %}
+      <div class="video-banner__image">
+        {{ section.settings.image | image_url: width: 2400 | image_tag: loading: 'lazy' }}
+      </div>
+    {% endif %}
+
+    <div class="video-banner__overlay"></div>
+
+    <div class="video-banner__content">
+      {% if section.settings.title %}
+        <h2 class="video-banner__title">{{ section.settings.title }}</h2>
+      {% endif %}
+
+      {% if section.settings.subtitle %}
+        <p class="video-banner__subtitle">{{ section.settings.subtitle }}</p>
+      {% endif %}
+
+      {% if section.settings.button_text %}
+        <a href="{{ section.settings.button_link }}" class="video-banner__button">
+          {{ section.settings.button_text }}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .video-banner {
+    position: relative;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .video-banner__container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 600px;
+  }
+
+  .video-banner__video,
+  .video-banner__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  .video-banner__video-element,
+  .video-banner__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .video-banner__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+  }
+
+  .video-banner__content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: white;
+    padding: 4rem var(--page-margin);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .video-banner__title {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  }
+
+  .video-banner__subtitle {
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    letter-spacing: 0.1em;
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  }
+
+  .video-banner__button {
+    display: inline-block;
+    background-color: white;
+    color: var(--color-foreground);
+    padding: 1.25rem 3.5rem;
+    font-size: 0.875rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border: 1px solid white;
+    transition: all 0.4s ease;
+    text-decoration: none;
+  }
+
+  .video-banner__button:hover {
+    background-color: transparent;
+    color: white;
+  }
+
+  @media (max-width: 768px) {
+    .video-banner {
+      min-height: 400px;
+    }
+
+    .video-banner__container {
+      min-height: 400px;
+    }
+
+    .video-banner__content {
+      padding: 2rem var(--page-margin);
+    }
+
+    .video-banner__button {
+      padding: 1rem 2.5rem;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Video Banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "video_url",
+      "label": "Video URL",
+      "info": "URL to MP4 video file"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Fallback image",
+      "info": "Used if no video is provided"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Experience Luxury"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Discover the art of Tamil heritage fashion"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video Banner"
+    }
+  ]
+}
+{% endschema %}
