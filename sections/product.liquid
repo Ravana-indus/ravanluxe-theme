@@ -1,3 +1,17 @@
+{% doc %}
+  Renders a luxury product page with gallery, variant selection, and purchase options.
+
+  This section provides a premium shopping experience with:
+  - Desktop gallery with 2x2 grid layout
+  - Mobile swipeable carousel with dot navigation
+  - Interactive variant selection with real-time price updates
+  - Quantity selector with +/- buttons
+  - Add to cart functionality
+  - Product information accordion
+
+  @param {product} product - The product object from Shopify
+{% enddoc %}
+
 <div class="product-page-luxury">
   <div class="product-page-luxury__gallery">
     {% if product.images.size > 0 %}
@@ -318,8 +332,14 @@
     color: var(--color-foreground);
   }
 
+  .product-quantity {
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+  }
+
   .quantity-selector {
     display: flex;
+    align-items: center;
     border: 1px solid var(--color-foreground);
     width: fit-content;
   }
@@ -334,6 +354,9 @@
     font-size: 1.125rem;
     transition: background 0.3s ease;
     font-family: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .quantity-button:hover {
@@ -350,6 +373,19 @@
     font-size: 0.875rem;
     font-family: inherit;
     color: var(--color-foreground);
+    /* Remove default up/down arrows */
+    -moz-appearance: textfield;
+    appearance: textfield;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Remove default up/down arrows for WebKit browsers */
+  .quantity-input::-webkit-outer-spin-button,
+  .quantity-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
   }
 
   .quantity-input:focus {
@@ -369,6 +405,10 @@
     cursor: pointer;
     transition: all 0.3s ease;
     font-family: inherit;
+    /* Ensure proper alignment */
+    display: block;
+    text-align: center;
+    box-sizing: border-box;
   }
 
   .product-submit:hover:not(:disabled) {
@@ -463,219 +503,128 @@
 {% endstylesheet %}
 
 {% javascript %}
-(function() {
-  // Wait for DOM to be fully loaded
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
+document.addEventListener('DOMContentLoaded', function() {
+  // Get form and elements
+  const form = document.querySelector('[data-product-form]');
+  if (!form) return;
+
+  // Get product data
+  const productJson = document.querySelector('[data-product-json]');
+  if (!productJson) return;
+
+  let product;
+  try {
+    product = JSON.parse(productJson.textContent);
+  } catch (e) {
+    console.error('Error parsing product JSON:', e);
+    return;
   }
 
-  function init() {
-    const productFormElement = document.querySelector('[data-product-form]');
-    if (!productFormElement) return;
+  // Variant selection
+  const optionButtons = form.querySelectorAll('[data-option-button]');
+  const variantIdInput = form.querySelector('[data-variant-id]');
+  const priceElement = document.querySelector('[data-product-price]');
+  const addToCartButton = form.querySelector('[data-add-to-cart]');
+  const buttonText = form.querySelector('[data-button-text]');
 
-    // Parse product JSON
-    const productJson = document.querySelector('[data-product-json]');
-    if (!productJson) return;
+  optionButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const position = this.getAttribute('data-option-position');
+      const value = this.getAttribute('data-option-value');
 
-    const product = JSON.parse(productJson.textContent);
-
-    // Initialize components
-    new VariantSelector(productFormElement, product);
-    new QuantitySelector(productFormElement);
-    new MobileCarousel();
-  }
-
-  // Variant Selector Class
-  function VariantSelector(form, product) {
-    this.form = form;
-    this.product = product;
-    this.variantData = product.variants;
-    this.optionButtons = form.querySelectorAll('[data-option-button]');
-    this.variantIdInput = form.querySelector('[data-variant-id]');
-    this.priceElement = document.querySelector('[data-product-price]');
-    this.addToCartButton = form.querySelector('[data-add-to-cart]');
-    this.buttonText = form.querySelector('[data-button-text]');
-
-    this.init();
-  }
-
-  VariantSelector.prototype.init = function() {
-    const self = this;
-    this.optionButtons.forEach(function(button) {
-      button.addEventListener('click', function(e) {
-        e.preventDefault();
-        self.onOptionClick(this);
+      // Update active state
+      form.querySelectorAll(`[data-option-position="${position}"]`).forEach(btn => {
+        btn.classList.remove('active');
       });
-    });
-  };
+      this.classList.add('active');
 
-  VariantSelector.prototype.onOptionClick = function(button) {
-    const position = button.getAttribute('data-option-position');
-    const value = button.getAttribute('data-option-value');
-
-    // Update active state
-    const siblings = this.form.querySelectorAll('[data-option-position="' + position + '"]');
-    siblings.forEach(function(btn) {
-      btn.classList.remove('active');
-    });
-    button.classList.add('active');
-
-    // Find matching variant
-    this.updateVariant();
-  };
-
-  VariantSelector.prototype.updateVariant = function() {
-    const selectedOptions = this.getSelectedOptions();
-    const variant = this.findMatchingVariant(selectedOptions);
-
-    if (variant) {
-      this.variantIdInput.value = variant.id;
-      this.updatePrice(variant.price);
-      this.updateButton(variant.available);
-    }
-  };
-
-  VariantSelector.prototype.getSelectedOptions = function() {
-    const options = [];
-    const activeButtons = this.form.querySelectorAll('[data-option-button].active');
-
-    activeButtons.forEach(function(button) {
-      const position = parseInt(button.getAttribute('data-option-position'));
-      const value = button.getAttribute('data-option-value');
-      options[position - 1] = value;
-    });
-
-    return options;
-  };
-
-  VariantSelector.prototype.findMatchingVariant = function(selectedOptions) {
-    return this.variantData.find(function(variant) {
-      return selectedOptions.every(function(option, index) {
-        return variant.options[index] === option;
+      // Find matching variant
+      const selectedOptions = [];
+      form.querySelectorAll('[data-option-button].active').forEach(btn => {
+        const pos = parseInt(btn.getAttribute('data-option-position'));
+        const val = btn.getAttribute('data-option-value');
+        selectedOptions[pos - 1] = val;
       });
-    });
-  };
 
-  VariantSelector.prototype.updatePrice = function(price) {
-    if (this.priceElement) {
-      this.priceElement.textContent = this.formatMoney(price);
-    }
-  };
-
-  VariantSelector.prototype.updateButton = function(available) {
-    if (this.addToCartButton && this.buttonText) {
-      this.addToCartButton.disabled = !available;
-      this.buttonText.textContent = available ? 'Add to Basket' : 'Sold Out';
-    }
-  };
-
-  VariantSelector.prototype.formatMoney = function(cents) {
-    return '$' + (cents / 100).toFixed(2);
-  };
-
-  // Quantity Selector Class
-  function QuantitySelector(form) {
-    this.form = form;
-    this.input = form.querySelector('[data-quantity-input]');
-    this.decreaseButton = form.querySelector('[data-quantity-decrease]');
-    this.increaseButton = form.querySelector('[data-quantity-increase]');
-
-    if (this.input && this.decreaseButton && this.increaseButton) {
-      this.init();
-    }
-  }
-
-  QuantitySelector.prototype.init = function() {
-    const self = this;
-
-    this.decreaseButton.addEventListener('click', function(e) {
-      e.preventDefault();
-      self.decrease();
-    });
-
-    this.increaseButton.addEventListener('click', function(e) {
-      e.preventDefault();
-      self.increase();
-    });
-
-    this.input.addEventListener('change', function() {
-      self.validate();
-    });
-  };
-
-  QuantitySelector.prototype.decrease = function() {
-    const currentValue = parseInt(this.input.value) || 1;
-    if (currentValue > 1) {
-      this.input.value = currentValue - 1;
-    }
-  };
-
-  QuantitySelector.prototype.increase = function() {
-    const currentValue = parseInt(this.input.value) || 1;
-    this.input.value = currentValue + 1;
-  };
-
-  QuantitySelector.prototype.validate = function() {
-    const value = parseInt(this.input.value) || 1;
-    if (value < 1) {
-      this.input.value = 1;
-    }
-  };
-
-  // Mobile Carousel Class
-  function MobileCarousel() {
-    this.carousel = document.querySelector('[data-mobile-carousel]');
-    this.dots = document.querySelectorAll('[data-dot-index]');
-
-    if (this.carousel && this.dots.length > 0) {
-      this.init();
-    }
-  }
-
-  MobileCarousel.prototype.init = function() {
-    const self = this;
-
-    // Dot click handlers
-    this.dots.forEach(function(dot) {
-      dot.addEventListener('click', function() {
-        const index = parseInt(this.getAttribute('data-dot-index'));
-        self.scrollToSlide(index);
+      const variant = product.variants.find(v => {
+        return selectedOptions.every((option, index) => {
+          return v.options[index] === option;
+        });
       });
-    });
 
-    // Scroll handler for updating dots
-    let scrollTimeout;
-    this.carousel.addEventListener('scroll', function() {
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(function() {
-        self.updateActiveDot();
-      }, 100);
-    });
-  };
-
-  MobileCarousel.prototype.scrollToSlide = function(index) {
-    const slideWidth = this.carousel.offsetWidth;
-    this.carousel.scrollTo({
-      left: index * slideWidth,
-      behavior: 'smooth'
-    });
-  };
-
-  MobileCarousel.prototype.updateActiveDot = function() {
-    const slideWidth = this.carousel.offsetWidth;
-    const currentIndex = Math.round(this.carousel.scrollLeft / slideWidth);
-
-    this.dots.forEach(function(dot, index) {
-      if (index === currentIndex) {
-        dot.classList.add('active');
-      } else {
-        dot.classList.remove('active');
+      if (variant) {
+        variantIdInput.value = variant.id;
+        if (priceElement) {
+          priceElement.textContent = '$' + (variant.price / 100).toFixed(2);
+        }
+        if (addToCartButton && buttonText) {
+          addToCartButton.disabled = !variant.available;
+          buttonText.textContent = variant.available ? 'Add to Basket' : 'Sold Out';
+        }
       }
     });
-  };
-})();
+  });
+
+  // Quantity selector
+  const quantityInput = form.querySelector('[data-quantity-input]');
+  const decreaseButton = form.querySelector('[data-quantity-decrease]');
+  const increaseButton = form.querySelector('[data-quantity-increase]');
+
+  if (quantityInput && decreaseButton && increaseButton) {
+    decreaseButton.addEventListener('click', function() {
+      const currentValue = parseInt(quantityInput.value) || 1;
+      if (currentValue > 1) {
+        quantityInput.value = currentValue - 1;
+      }
+    });
+
+    increaseButton.addEventListener('click', function() {
+      const currentValue = parseInt(quantityInput.value) || 1;
+      quantityInput.value = currentValue + 1;
+    });
+
+    quantityInput.addEventListener('change', function() {
+      const value = parseInt(this.value) || 1;
+      if (value < 1) {
+        this.value = 1;
+      }
+    });
+  }
+
+  // Mobile carousel
+  const carousel = document.querySelector('[data-mobile-carousel]');
+  const dots = document.querySelectorAll('[data-dot-index]');
+
+  if (carousel && dots.length > 0) {
+    dots.forEach(dot => {
+      dot.addEventListener('click', function() {
+        const index = parseInt(this.getAttribute('data-dot-index'));
+        const slideWidth = carousel.offsetWidth;
+        carousel.scrollTo({
+          left: index * slideWidth,
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    let scrollTimeout;
+    carousel.addEventListener('scroll', function() {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        const slideWidth = carousel.offsetWidth;
+        const currentIndex = Math.round(carousel.scrollLeft / slideWidth);
+
+        dots.forEach((dot, index) => {
+          if (index === currentIndex) {
+            dot.classList.add('active');
+          } else {
+            dot.classList.remove('active');
+          }
+        });
+      }, 100);
+    });
+  }
+});
 {% endjavascript %}
 
 {% schema %}
