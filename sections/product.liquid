@@ -479,11 +479,19 @@
       const optionButtons = document.querySelectorAll('.product-page-new__option-button');
       const form = document.getElementById('product-form');
 
-      if (!form || optionButtons.length === 0) return;
+      console.log('Init variant selection - buttons:', optionButtons.length, 'form:', form);
+
+      if (!form || optionButtons.length === 0) {
+        console.warn('No form or buttons found for variant selection');
+        return;
+      }
 
       optionButtons.forEach(function(button) {
         button.addEventListener('click', function(e) {
           e.preventDefault();
+          e.stopPropagation();
+
+          console.log('Option button clicked:', this.textContent);
 
           const optionName = this.getAttribute('data-option-name');
           const siblings = document.querySelectorAll('[data-option-name="' + optionName + '"]');
@@ -496,17 +504,23 @@
           updateVariant(form);
         });
       });
+
+      console.log('Variant selection initialized');
     }
 
     function updateVariant(form) {
       const selectedOptions = {};
       const activeButtons = document.querySelectorAll('.product-page-new__option-button.active');
 
+      console.log('Updating variant - active buttons:', activeButtons.length);
+
       activeButtons.forEach(function(btn) {
         const optionName = btn.getAttribute('data-option-name');
         const optionValue = btn.getAttribute('data-option-value');
         selectedOptions[optionName] = optionValue;
       });
+
+      console.log('Selected options:', selectedOptions);
 
       const variant = productVariants.find(function(v) {
         return Object.keys(selectedOptions).every(function(key) {
@@ -515,10 +529,13 @@
         });
       });
 
+      console.log('Matched variant:', variant);
+
       if (variant) {
         const variantInput = form.querySelector('input[name="id"]');
         if (variantInput) {
           variantInput.value = variant.id;
+          console.log('Updated variant ID to:', variant.id);
         }
 
         const addToCartBtn = form.querySelector('.product-page-new__add-to-cart');
@@ -540,14 +557,22 @@
       const minusBtn = document.querySelector('.quantity-minus');
       const plusBtn = document.querySelector('.quantity-plus');
 
-      if (!quantityInput) return;
+      console.log('Init quantity selector - input:', quantityInput, 'minus:', minusBtn, 'plus:', plusBtn);
+
+      if (!quantityInput) {
+        console.warn('No quantity input found');
+        return;
+      }
 
       if (minusBtn) {
         minusBtn.addEventListener('click', function(e) {
           e.preventDefault();
+          e.stopPropagation();
           const currentValue = parseInt(quantityInput.value) || 1;
+          console.log('Minus clicked - current:', currentValue);
           if (currentValue > 1) {
             quantityInput.value = currentValue - 1;
+            console.log('New value:', quantityInput.value);
           }
         });
       }
@@ -555,8 +580,11 @@
       if (plusBtn) {
         plusBtn.addEventListener('click', function(e) {
           e.preventDefault();
+          e.stopPropagation();
           const currentValue = parseInt(quantityInput.value) || 1;
+          console.log('Plus clicked - current:', currentValue);
           quantityInput.value = currentValue + 1;
+          console.log('New value:', quantityInput.value);
         });
       }
 
@@ -566,6 +594,8 @@
           this.value = 1;
         }
       });
+
+      console.log('Quantity selector initialized');
     }
 
     // Mobile Gallery Carousel
@@ -615,18 +645,14 @@
       });
     }
 
-    // Initialize everything when DOM is ready
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', function() {
-        initVariantSelection();
-        initQuantitySelector();
-        initMobileGallery();
-      });
-    } else {
+    // Initialize everything when DOM is ready - force wait for DOMContentLoaded
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('Product page initializing...');
       initVariantSelection();
       initQuantitySelector();
       initMobileGallery();
-    }
+      console.log('Product page initialized');
+    });
   })();
 {% endjavascript %}
 
