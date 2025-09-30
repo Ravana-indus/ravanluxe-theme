@@ -64,21 +64,22 @@
               </a>
             {% endif %}
           </div>
-          {% if section.settings.show_newsletter %}
-            <div class="footer__newsletter">
-              <p>Subscribe to our newsletter</p>
-              <form action="/contact#newsletter" method="post" class="footer__newsletter-form">
-                <input type="email" name="contact[email]" placeholder="Email address" required>
-                <button type="submit" aria-label="Subscribe">
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path d="M5 10h10M10 5l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </button>
-              </form>
-            </div>
-          {% endif %}
         </div>
       </div>
+
+      {% if section.settings.show_newsletter %}
+        <div class="footer__newsletter">
+          <p>Subscribe to our newsletter</p>
+          <form action="/contact#newsletter" method="post" class="footer__newsletter-form">
+            <input type="email" name="contact[email]" placeholder="Email address" required>
+            <button type="submit" aria-label="Subscribe">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M5 10h10M10 5l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </form>
+        </div>
+      {% endif %}
     </div>
 
     <div class="footer__bottom">
@@ -101,9 +102,9 @@
   }
 
   .footer__container {
-    max-width: var(--page-width);
-    margin: 0 auto;
-    padding: 4rem var(--page-margin) 2rem;
+    width: 100%;
+    margin: 0;
+    padding: 4rem 2rem 2rem;
   }
 
   .footer__top {
@@ -143,13 +144,18 @@
 
   .footer__links {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: 2fr 1fr 1fr 1fr;
     gap: 2rem;
   }
 
   .footer__column {
     display: flex;
     flex-direction: column;
+  }
+
+  .footer__column:last-child {
+    text-align: right;
+    margin-left: auto;
   }
 
   .footer__title {
@@ -197,6 +203,11 @@
     color: #ffffff;
   }
 
+  .footer__newsletter {
+    width: 100%;
+    margin-top: 2rem;
+  }
+
   .footer__newsletter p {
     font-size: 0.875rem;
     margin-bottom: 1rem;
@@ -208,7 +219,7 @@
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 4px;
     overflow: hidden;
-    max-width: 100%;
+    width: 100%;
   }
 
   .footer__newsletter-form input {
@@ -275,6 +286,10 @@
   }
 
   @media (max-width: 1024px) {
+    .footer__container {
+      padding: 3rem 1.5rem 2rem;
+    }
+
     .footer__top {
       grid-template-columns: 1fr;
       gap: 3rem;
@@ -291,13 +306,13 @@
     }
 
     .footer__newsletter-form {
-      max-width: 100%;
+      width: 100%;
     }
   }
 
   @media (max-width: 768px) {
     .footer__container {
-      padding: 3rem var(--page-margin) 2rem;
+      padding: 3rem 1rem 2rem;
     }
 
     .footer__top {
@@ -324,6 +339,10 @@
       margin-bottom: 1.5rem;
     }
 
+    .footer__column:last-child {
+      text-align: center;
+    }
+
     .footer__social {
       justify-content: center;
       margin-bottom: 1.5rem;
@@ -331,10 +350,11 @@
 
     .footer__newsletter {
       text-align: center;
+      margin-top: 1.5rem;
     }
 
     .footer__newsletter-form {
-      max-width: 300px;
+      width: 100%;
       margin: 0 auto;
       flex-direction: column;
       border: none;

@@ -46,14 +46,14 @@
             <span class="header__cart-count">{{ cart.item_count }}</span>
           {% endif %}
         </a>
+
+        <button class="header__menu-toggle" aria-label="Menu" id="menuToggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
     </div>
-
-    <button class="header__menu-toggle" aria-label="Menu" id="menuToggle">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
   </div>
 
   <nav class="header__mobile-nav" id="mobileNav">
@@ -213,8 +213,7 @@
     flex-direction: column;
     justify-content: space-between;
     cursor: pointer;
-    position: absolute;
-    right: var(--page-margin);
+    z-index: 1001;
   }
 
   .header__menu-toggle span {
@@ -222,6 +221,19 @@
     height: 2px;
     background-color: var(--color-foreground);
     transition: all 0.3s ease;
+    transform-origin: center;
+  }
+
+  .header__menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .header__menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .header__menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
   }
 
   .header__mobile-nav {
@@ -254,8 +266,29 @@
     }
 
     .header__container {
-      grid-template-columns: 1fr auto;
+      grid-template-columns: auto 1fr;
       position: relative;
+      padding: 1rem var(--page-margin);
+      align-items: center;
+    }
+
+    .header__logo {
+      grid-column: 1;
+      justify-self: start;
+      text-align: left;
+      align-items: flex-start;
+    }
+
+    .header__logo a {
+      align-items: flex-start;
+    }
+
+    .header__actions {
+      grid-column: 2;
+      justify-self: end;
+      gap: 1rem;
+      display: flex;
+      align-items: center;
     }
 
     .header__menu-toggle {
@@ -264,10 +297,6 @@
 
     .header__mobile-nav {
       display: block;
-    }
-
-    .header__actions {
-      gap: 1rem;
     }
   }
 
@@ -300,12 +329,10 @@
       width: 16px;
       height: 16px;
     }
-  }
 {% endstylesheet %}
 
 {% javascript %}
   (function() {
-    let lastScroll = 0;
     const header = document.getElementById('siteHeader');
     const menuToggle = document.getElementById('menuToggle');
     const mobileNav = document.getElementById('mobileNav');
@@ -316,7 +343,6 @@
 
       if (currentScroll <= 0) {
         header.classList.remove('header--scrolled');
-        header.classList.remove('header--hidden');
         return;
       }
 
@@ -325,21 +351,40 @@
       } else {
         header.classList.remove('header--scrolled');
       }
-
-      if (currentScroll > lastScroll && currentScroll > 300) {
-        header.classList.add('header--hidden');
-        mobileNav.classList.remove('active');
-      } else if (currentScroll < lastScroll) {
-        header.classList.remove('header--hidden');
-      }
-
-      lastScroll = currentScroll;
     });
 
-    if (menuToggle) {
-      menuToggle.addEventListener('click', function() {
+    // Hamburger menu functionality
+    if (menuToggle && mobileNav) {
+      menuToggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log('Menu toggle clicked'); // Debug log
         mobileNav.classList.toggle('active');
+
+        // Toggle hamburger animation
+        this.classList.toggle('active');
       });
+
+      // Close menu when clicking outside
+      document.addEventListener('click', function(e) {
+        if (mobileNav.classList.contains('active') &&
+            !mobileNav.contains(e.target) &&
+            !menuToggle.contains(e.target)) {
+          mobileNav.classList.remove('active');
+          menuToggle.classList.remove('active');
+        }
+      });
+
+      // Close menu when clicking on a link
+      const mobileLinks = mobileNav.querySelectorAll('.header__mobile-link');
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          mobileNav.classList.remove('active');
+          menuToggle.classList.remove('active');
+        });
+      });
+    } else {
+      console.error('Menu toggle or mobile nav not found');
     }
   })();
 {% endjavascript %}

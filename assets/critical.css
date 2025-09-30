@@ -192,3 +192,16 @@ button.button--secondary:hover {
 .shopify-section > .full-width {
   grid-column: 1 / -1;
 }
+
+/* Mobile responsive adjustments for full-width experience */
+@media (max-width: 1024px) {
+  .shopify-section {
+    --page-margin: 8px; /* 0.5rem */
+  }
+}
+
+@media (max-width: 768px) {
+  .shopify-section {
+    --page-margin: 4px; /* 0.25rem */
+  }
+}
