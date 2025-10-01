@@ -1,0 +1,162 @@
+/**
+ * Page-Specific Optimizations for Gucci-inspired Luxury
+ * Applied to Contact, World of Ravan, and other pages
+ */
+
+/* Contact Page Enhancements */
+.contact-title,
+.world-section-title {
+  font-weight: 300 !important;
+  letter-spacing: 0.12em !important;
+  line-height: 1.2 !important;
+}
+
+.contact-subtitle,
+.world-section-subtitle {
+  letter-spacing: 0.03em !important;
+  line-height: 1.7 !important;
+}
+
+.form-group input,
+.form-group textarea,
+.contact-form input,
+.contact-form textarea {
+  border-width: 1.5px !important;
+  border-radius: 0 !important;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  letter-spacing: 0.01em !important;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.contact-form input:focus,
+.contact-form textarea:focus {
+  box-shadow: 0 0 0 1px var(--color-foreground) !important;
+}
+
+.contact-submit,
+.world-cta-button {
+  border-width: 1.5px !important;
+  border-radius: 0 !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.12em !important;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  min-height: 52px !important;
+}
+
+.contact-submit:hover,
+.world-cta-button:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* World of Ravan Page Enhancements */
+.world-hero-title {
+  font-weight: 300 !important;
+  letter-spacing: 0.15em !important;
+}
+
+.world-value-title {
+  font-weight: 500 !important;
+  letter-spacing: 0.08em !important;
+}
+
+.world-value-card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Featured Collection Enhancements */
+.product-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.product-card:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06) !important;
+}
+
+.product-card__title {
+  font-weight: 400 !important;
+  letter-spacing: 0.08em !important;
+}
+
+/* Hero Section Enhancements */
+.hero__button {
+  border-width: 1.5px !important;
+  border-radius: 0 !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.12em !important;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  min-height: 52px !important;
+}
+
+.hero__button:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Footer Enhancements */
+.footer__newsletter-form button {
+  border-width: 1.5px !important;
+  border-radius: 0 !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.12em !important;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.footer__newsletter-form input {
+  border-radius: 0 !important;
+  letter-spacing: 0.01em !important;
+}
+
+/* General Button Optimization */
+.button,
+button[type="submit"]:not(.quantity-button):not(.carousel-dot) {
+  border-radius: 0 !important;
+  border-width: 1.5px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.12em !important;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  min-height: 48px !important;
+}
+
+/* Accordion Enhancements (Details & Care) */
+.accordion-item summary {
+  font-weight: 500 !important;
+  letter-spacing: 0.08em !important;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.accordion-item summary:hover {
+  opacity: 0.65 !important;
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+  .contact-title,
+  .world-hero-title {
+    font-size: 1.75rem !important;
+    letter-spacing: 0.1em !important;
+  }
+
+  .contact-submit,
+  .world-cta-button,
+  .hero__button {
+    width: 100% !important;
+    padding: 1.125rem 2rem !important;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    font-size: 0.9375rem !important;
+  }
+}
+
+/* Touch Device Feedback */
+@media (hover: none) and (pointer: coarse) {
+  .contact-submit:active,
+  .world-cta-button:active,
+  .hero__button:active,
+  .option-button:active {
+    transform: scale(0.98) !important;
+  }
+}
