@@ -12,6 +12,7 @@
     {{ 'critical.css' | asset_url | stylesheet_tag: preload: true }}
     {{ 'luxury-enhancements.css' | asset_url | stylesheet_tag }}
     {{ 'page-optimizations.css' | asset_url | stylesheet_tag }}
+    {{ 'mobile-optimizations.css' | asset_url | stylesheet_tag: media: '(max-width: 768px)' }}
 
     {% # Performance: Preconnect to required domains %}
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
