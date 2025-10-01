@@ -1,0 +1,26 @@
+{
+  "sections": {
+    "contact-form": {
+      "type": "contact-form",
+      "settings": {
+        "title": "Get In Touch",
+        "subtitle": "We'd love to hear from you. Send us a message and we'll respond as soon as possible.",
+        "info_title": "Contact Information",
+        "show_email": true,
+        "email": "info@ravanluxe.com",
+        "show_phone": true,
+        "phone": "+1 (555) 123-4567",
+        "show_address": true,
+        "address": "123 Fashion Street\nNew York, NY 10001\nUnited States",
+        "show_hours": true,
+        "hours": "Monday - Friday: 9:00 AM - 6:00 PM\nSaturday: 10:00 AM - 4:00 PM\nSunday: Closed",
+        "show_social": true,
+        "submit_text": "Send Message",
+        "success_message": "Thank you for contacting us. We'll get back to you soon!"
+      }
+    }
+  },
+  "order": [
+    "contact-form"
+  ]
+}

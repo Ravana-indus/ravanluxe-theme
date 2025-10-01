@@ -1,0 +1,626 @@
+{% comment %}
+  Contact form section with luxury styling
+  Includes contact information and form
+{% endcomment %}
+
+<div class="contact-page">
+  <div class="contact-container">
+    <div class="contact-header">
+      <h1 class="contact-title">{{ section.settings.title }}</h1>
+      {% if section.settings.subtitle %}
+        <p class="contact-subtitle">{{ section.settings.subtitle }}</p>
+      {% endif %}
+    </div>
+
+    <div class="contact-content">
+      <!-- Contact Information -->
+      <div class="contact-info">
+        <div class="contact-info-section">
+          <h2 class="contact-info-title">{{ section.settings.info_title }}</h2>
+
+          {% if section.settings.show_email %}
+            <div class="contact-info-item">
+              <svg class="contact-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M2 7L12 13L22 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+              <div>
+                <h3>Email</h3>
+                <a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a>
+              </div>
+            </div>
+          {% endif %}
+
+          {% if section.settings.show_phone %}
+            <div class="contact-info-item">
+              <svg class="contact-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <div>
+                <h3>Phone</h3>
+                <a href="tel:{{ section.settings.phone }}">{{ section.settings.phone }}</a>
+              </div>
+            </div>
+          {% endif %}
+
+          {% if section.settings.show_address %}
+            <div class="contact-info-item">
+              <svg class="contact-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <div>
+                <h3>Address</h3>
+                <p>{{ section.settings.address }}</p>
+              </div>
+            </div>
+          {% endif %}
+
+          {% if section.settings.show_hours %}
+            <div class="contact-info-item">
+              <svg class="contact-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+              <div>
+                <h3>Business Hours</h3>
+                <p>{{ section.settings.hours }}</p>
+              </div>
+            </div>
+          {% endif %}
+        </div>
+
+        {% if section.settings.show_social %}
+          <div class="contact-social">
+            <h3>Follow Us</h3>
+            <div class="contact-social-links">
+              {% if section.settings.social_instagram %}
+                <a href="{{ section.settings.social_instagram }}" target="_blank" rel="noopener" aria-label="Instagram">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.5"/>
+                    <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5"/>
+                    <circle cx="18" cy="6" r="1" fill="currentColor"/>
+                  </svg>
+                </a>
+              {% endif %}
+              {% if section.settings.social_facebook %}
+                <a href="{{ section.settings.social_facebook }}" target="_blank" rel="noopener" aria-label="Facebook">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+              {% endif %}
+              {% if section.settings.social_twitter %}
+                <a href="{{ section.settings.social_twitter }}" target="_blank" rel="noopener" aria-label="Twitter">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+              {% endif %}
+            </div>
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- Contact Form -->
+      <div class="contact-form-wrapper">
+        {% form 'contact' %}
+          {% if form.posted_successfully? %}
+            <div class="contact-success">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <p>{{ section.settings.success_message | default: "Thank you for contacting us. We'll get back to you soon!" }}</p>
+            </div>
+          {% endif %}
+
+          {% if form.errors %}
+            <div class="contact-errors">
+              <p>{{ form.errors | default_errors }}</p>
+            </div>
+          {% endif %}
+
+          <div class="contact-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="ContactForm-name">Name *</label>
+                <input
+                  type="text"
+                  id="ContactForm-name"
+                  name="contact[name]"
+                  value="{% if form.name %}{{ form.name }}{% endif %}"
+                  required
+                  aria-required="true">
+              </div>
+
+              <div class="form-group">
+                <label for="ContactForm-email">Email *</label>
+                <input
+                  type="email"
+                  id="ContactForm-email"
+                  name="contact[email]"
+                  value="{% if form.email %}{{ form.email }}{% endif %}"
+                  required
+                  aria-required="true">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="ContactForm-phone">Phone</label>
+              <input
+                type="tel"
+                id="ContactForm-phone"
+                name="contact[phone]"
+                value="{% if form.phone %}{{ form.phone }}{% endif %}">
+            </div>
+
+            <div class="form-group">
+              <label for="ContactForm-subject">Subject *</label>
+              <input
+                type="text"
+                id="ContactForm-subject"
+                name="contact[subject]"
+                value="{% if form.subject %}{{ form.subject }}{% endif %}"
+                required
+                aria-required="true">
+            </div>
+
+            <div class="form-group">
+              <label for="ContactForm-message">Message *</label>
+              <textarea
+                id="ContactForm-message"
+                name="contact[body]"
+                rows="6"
+                required
+                aria-required="true">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+            </div>
+
+            <button type="submit" class="contact-submit">
+              {{ section.settings.submit_text | default: "Send Message" }}
+            </button>
+          </div>
+        {% endform %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .contact-page {
+    padding: 4rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .contact-container {
+    width: 100%;
+  }
+
+  .contact-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .contact-title {
+    font-size: 2.5rem;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    color: #000000;
+  }
+
+  .contact-subtitle {
+    font-size: 1rem;
+    color: #666666;
+    letter-spacing: 0.05em;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  .contact-content {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .contact-info {
+    background: #f8f8f8;
+    padding: 3rem;
+    border-radius: 4px;
+    position: sticky;
+    top: 2rem;
+  }
+
+  .contact-info-section {
+    margin-bottom: 2rem;
+  }
+
+  .contact-info-title {
+    font-size: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    color: #000000;
+  }
+
+  .contact-info-item {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    align-items: start;
+  }
+
+  .contact-icon {
+    flex-shrink: 0;
+    color: #000000;
+    margin-top: 0.25rem;
+  }
+
+  .contact-info-item h3 {
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    color: #000000;
+  }
+
+  .contact-info-item p,
+  .contact-info-item a {
+    font-size: 1rem;
+    color: #666666;
+    line-height: 1.6;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .contact-info-item a:hover {
+    color: #000000;
+  }
+
+  .contact-social {
+    padding-top: 2rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .contact-social h3 {
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    color: #000000;
+  }
+
+  .contact-social-links {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .contact-social-links a {
+    color: #666666;
+    transition: color 0.3s ease;
+  }
+
+  .contact-social-links a:hover {
+    color: #000000;
+  }
+
+  .contact-form-wrapper {
+    background: #ffffff;
+    padding: 3rem;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+  }
+
+  .contact-success {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+    padding: 1.5rem;
+    border-radius: 4px;
+    margin-bottom: 2rem;
+  }
+
+  .contact-success svg {
+    flex-shrink: 0;
+  }
+
+  .contact-success p {
+    margin: 0;
+    font-size: 0.95rem;
+  }
+
+  .contact-errors {
+    background: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+    padding: 1.5rem;
+    border-radius: 4px;
+    margin-bottom: 2rem;
+  }
+
+  .contact-errors p {
+    margin: 0;
+    font-size: 0.95rem;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-group label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    color: #000000;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    font-size: 1rem;
+    font-family: inherit;
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+    background: #ffffff;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: #000000;
+  }
+
+  .form-group textarea {
+    resize: vertical;
+    min-height: 150px;
+  }
+
+  .contact-submit {
+    background: #000000;
+    color: #ffffff;
+    border: none;
+    padding: 1rem 2.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 4px;
+    align-self: start;
+  }
+
+  .contact-submit:hover {
+    background: #333333;
+  }
+
+  .contact-submit:active {
+    background: #000000;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .contact-content {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .contact-info {
+      position: static;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .contact-page {
+      padding: 3rem 1.5rem;
+    }
+
+    .contact-header {
+      margin-bottom: 3rem;
+    }
+
+    .contact-title {
+      font-size: 2rem;
+    }
+
+    .contact-subtitle {
+      font-size: 0.95rem;
+    }
+
+    .contact-info,
+    .contact-form-wrapper {
+      padding: 2rem;
+    }
+
+    .form-row {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .contact-submit {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .contact-page {
+      padding: 2rem 1rem;
+    }
+
+    .contact-title {
+      font-size: 1.5rem;
+    }
+
+    .contact-subtitle {
+      font-size: 0.875rem;
+    }
+
+    .contact-info,
+    .contact-form-wrapper {
+      padding: 1.5rem;
+    }
+
+    .contact-info-item {
+      gap: 1rem;
+    }
+
+    .contact-icon {
+      width: 20px;
+      height: 20px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Contact Form",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Get In Touch"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "We'd love to hear from you. Send us a message and we'll respond as soon as possible."
+    },
+    {
+      "type": "header",
+      "content": "Contact Information"
+    },
+    {
+      "type": "text",
+      "id": "info_title",
+      "label": "Info Section Title",
+      "default": "Contact Information"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_email",
+      "label": "Show Email",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Email Address",
+      "default": "info@ravanluxe.com"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_phone",
+      "label": "Show Phone",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "phone",
+      "label": "Phone Number",
+      "default": "+1 (555) 123-4567"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_address",
+      "label": "Show Address",
+      "default": true
+    },
+    {
+      "type": "textarea",
+      "id": "address",
+      "label": "Address",
+      "default": "123 Fashion Street\nNew York, NY 10001\nUnited States"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_hours",
+      "label": "Show Business Hours",
+      "default": true
+    },
+    {
+      "type": "textarea",
+      "id": "hours",
+      "label": "Business Hours",
+      "default": "Monday - Friday: 9:00 AM - 6:00 PM\nSaturday: 10:00 AM - 4:00 PM\nSunday: Closed"
+    },
+    {
+      "type": "header",
+      "content": "Social Media"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social",
+      "label": "Show Social Links",
+      "default": true
+    },
+    {
+      "type": "url",
+      "id": "social_instagram",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "url",
+      "id": "social_facebook",
+      "label": "Facebook URL"
+    },
+    {
+      "type": "url",
+      "id": "social_twitter",
+      "label": "Twitter URL"
+    },
+    {
+      "type": "header",
+      "content": "Form Settings"
+    },
+    {
+      "type": "text",
+      "id": "submit_text",
+      "label": "Submit Button Text",
+      "default": "Send Message"
+    },
+    {
+      "type": "text",
+      "id": "success_message",
+      "label": "Success Message",
+      "default": "Thank you for contacting us. We'll get back to you soon!"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Contact Form"
+    }
+  ]
+}
+{% endschema %}

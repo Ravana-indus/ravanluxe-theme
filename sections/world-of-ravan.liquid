@@ -1,0 +1,811 @@
+{% comment %}
+  World of Ravan Luxe - About/Brand Story Section
+  Luxury brand narrative and heritage showcase
+{% endcomment %}
+
+<div class="world-of-ravan">
+  <!-- Hero Section -->
+  <div class="world-hero">
+    <div class="world-hero-content">
+      <h1 class="world-hero-title">{{ section.settings.hero_title }}</h1>
+      {% if section.settings.hero_subtitle %}
+        <p class="world-hero-subtitle">{{ section.settings.hero_subtitle }}</p>
+      {% endif %}
+    </div>
+    {% if section.settings.hero_image %}
+      <div class="world-hero-image">
+        <img src="{{ section.settings.hero_image | img_url: '1800x' }}" alt="{{ section.settings.hero_title }}">
+      </div>
+    {% endif %}
+  </div>
+
+  <!-- Brand Story Section -->
+  {% if section.settings.show_story %}
+    <div class="world-story">
+      <div class="world-story-container">
+        <div class="world-story-content">
+          <h2 class="world-section-title">{{ section.settings.story_title }}</h2>
+          <div class="world-story-text">
+            {{ section.settings.story_content }}
+          </div>
+        </div>
+        {% if section.settings.story_image %}
+          <div class="world-story-image">
+            <img src="{{ section.settings.story_image | img_url: '1200x' }}" alt="{{ section.settings.story_title }}">
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  {% endif %}
+
+  <!-- Values Section -->
+  {% if section.settings.show_values %}
+    <div class="world-values">
+      <div class="world-values-container">
+        <h2 class="world-section-title centered">{{ section.settings.values_title }}</h2>
+        {% if section.settings.values_subtitle %}
+          <p class="world-section-subtitle">{{ section.settings.values_subtitle }}</p>
+        {% endif %}
+
+        <div class="world-values-grid">
+          {% for i in (1..4) %}
+            {% assign value_title = 'value_' | append: i | append: '_title' %}
+            {% assign value_text = 'value_' | append: i | append: '_text' %}
+            {% assign value_icon = 'value_' | append: i | append: '_icon' %}
+
+            {% if section.settings[value_title] %}
+              <div class="world-value-card">
+                <div class="world-value-icon">
+                  {% case section.settings[value_icon] %}
+                    {% when 'craftsmanship' %}
+                      <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                        <path d="M20 7h-9M14 17H5M15 4L9 20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    {% when 'sustainability' %}
+                      <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                      </svg>
+                    {% when 'heritage' %}
+                      <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M9 22V12h6v10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    {% when 'excellence' %}
+                      <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                  {% endcase %}
+                </div>
+                <h3 class="world-value-title">{{ section.settings[value_title] }}</h3>
+                <p class="world-value-text">{{ section.settings[value_text] }}</p>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+  <!-- Heritage Section -->
+  {% if section.settings.show_heritage %}
+    <div class="world-heritage">
+      <div class="world-heritage-container">
+        {% if section.settings.heritage_image %}
+          <div class="world-heritage-image">
+            <img src="{{ section.settings.heritage_image | img_url: '1200x' }}" alt="{{ section.settings.heritage_title }}">
+          </div>
+        {% endif %}
+        <div class="world-heritage-content">
+          <h2 class="world-section-title">{{ section.settings.heritage_title }}</h2>
+          <div class="world-heritage-text">
+            {{ section.settings.heritage_content }}
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+  <!-- Tamil Motif Section -->
+  {% if section.settings.show_tamil_motif %}
+    <div class="world-tamil-section">
+      <div class="world-tamil-container">
+        <h2 class="world-section-title centered">{{ section.settings.tamil_title }}</h2>
+        {% if section.settings.tamil_subtitle %}
+          <p class="world-section-subtitle">{{ section.settings.tamil_subtitle }}</p>
+        {% endif %}
+        <div class="world-tamil-content">
+          <div class="world-tamil-motif">
+            <!-- Decorative Tamil-inspired pattern -->
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <pattern id="tamilPattern" x="0" y="0" width="50" height="50" patternUnits="userSpaceOnUse">
+                  <circle cx="25" cy="25" r="2" fill="currentColor" opacity="0.3"/>
+                  <path d="M25 15 Q35 25 25 35 Q15 25 25 15" stroke="currentColor" fill="none" opacity="0.2"/>
+                </pattern>
+              </defs>
+              <rect width="200" height="200" fill="url(#tamilPattern)"/>
+            </svg>
+          </div>
+          <div class="world-tamil-text">
+            {{ section.settings.tamil_content }}
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+  <!-- Vision Section -->
+  {% if section.settings.show_vision %}
+    <div class="world-vision">
+      <div class="world-vision-container">
+        <div class="world-vision-content">
+          <h2 class="world-section-title">{{ section.settings.vision_title }}</h2>
+          <div class="world-vision-text">
+            {{ section.settings.vision_content }}
+          </div>
+          {% if section.settings.vision_cta_text %}
+            <a href="{{ section.settings.vision_cta_link }}" class="world-cta-button">
+              {{ section.settings.vision_cta_text }}
+            </a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+</div>
+
+{% stylesheet %}
+  .world-of-ravan {
+    width: 100%;
+  }
+
+  /* Hero Section */
+  .world-hero {
+    position: relative;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+    background: linear-gradient(180deg, #f8f8f8 0%, #ffffff 100%);
+  }
+
+  .world-hero-content {
+    text-align: center;
+    max-width: 800px;
+    z-index: 2;
+    position: relative;
+  }
+
+  .world-hero-title {
+    font-size: 3.5rem;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    color: #000000;
+  }
+
+  .world-hero-subtitle {
+    font-size: 1.25rem;
+    color: #666666;
+    letter-spacing: 0.05em;
+    line-height: 1.8;
+    font-style: italic;
+  }
+
+  .world-hero-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.1;
+    z-index: 1;
+  }
+
+  .world-hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Section Common Styles */
+  .world-section-title {
+    font-size: 2.5rem;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    color: #000000;
+  }
+
+  .world-section-title.centered {
+    text-align: center;
+  }
+
+  .world-section-subtitle {
+    text-align: center;
+    font-size: 1.125rem;
+    color: #666666;
+    max-width: 700px;
+    margin: 0 auto 4rem;
+    line-height: 1.8;
+  }
+
+  /* Story Section */
+  .world-story {
+    padding: 6rem 2rem;
+    background: #ffffff;
+  }
+
+  .world-story-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+
+  .world-story-text {
+    font-size: 1.125rem;
+    line-height: 2;
+    color: #333333;
+  }
+
+  .world-story-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+  }
+
+  /* Values Section */
+  .world-values {
+    padding: 6rem 2rem;
+    background: #f8f8f8;
+  }
+
+  .world-values-container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .world-values-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
+    margin-top: 4rem;
+  }
+
+  .world-value-card {
+    text-align: center;
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 4px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .world-value-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  }
+
+  .world-value-icon {
+    color: #000000;
+    margin-bottom: 1.5rem;
+  }
+
+  .world-value-icon svg {
+    width: 48px;
+    height: 48px;
+  }
+
+  .world-value-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    color: #000000;
+  }
+
+  .world-value-text {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: #666666;
+  }
+
+  /* Heritage Section */
+  .world-heritage {
+    padding: 6rem 2rem;
+    background: #ffffff;
+  }
+
+  .world-heritage-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+
+  .world-heritage-image {
+    order: 2;
+  }
+
+  .world-heritage-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+  }
+
+  .world-heritage-content {
+    order: 1;
+  }
+
+  .world-heritage-text {
+    font-size: 1.125rem;
+    line-height: 2;
+    color: #333333;
+  }
+
+  /* Tamil Motif Section */
+  .world-tamil-section {
+    padding: 6rem 2rem;
+    background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+    color: #ffffff;
+  }
+
+  .world-tamil-container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .world-tamil-section .world-section-title,
+  .world-tamil-section .world-section-subtitle {
+    color: #ffffff;
+  }
+
+  .world-tamil-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+    align-items: center;
+    margin-top: 4rem;
+  }
+
+  .world-tamil-motif {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    color: #ffffff;
+    opacity: 0.6;
+  }
+
+  .world-tamil-motif svg {
+    width: 100%;
+    height: auto;
+  }
+
+  .world-tamil-text {
+    font-size: 1.125rem;
+    line-height: 2;
+    color: #cccccc;
+  }
+
+  /* Vision Section */
+  .world-vision {
+    padding: 6rem 2rem;
+    background: #f8f8f8;
+  }
+
+  .world-vision-container {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .world-vision-text {
+    font-size: 1.25rem;
+    line-height: 2;
+    color: #333333;
+    margin-bottom: 3rem;
+  }
+
+  .world-cta-button {
+    display: inline-block;
+    background: #000000;
+    color: #ffffff;
+    padding: 1rem 3rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+
+  .world-cta-button:hover {
+    background: #333333;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .world-hero-title {
+      font-size: 2.5rem;
+    }
+
+    .world-section-title {
+      font-size: 2rem;
+    }
+
+    .world-story-container,
+    .world-heritage-container {
+      grid-template-columns: 1fr;
+      gap: 4rem;
+    }
+
+    .world-heritage-image {
+      order: 1;
+    }
+
+    .world-heritage-content {
+      order: 2;
+    }
+
+    .world-values-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+
+    .world-tamil-content {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .world-hero {
+      min-height: 50vh;
+      padding: 3rem 1.5rem;
+    }
+
+    .world-hero-title {
+      font-size: 2rem;
+    }
+
+    .world-hero-subtitle {
+      font-size: 1rem;
+    }
+
+    .world-story,
+    .world-values,
+    .world-heritage,
+    .world-tamil-section,
+    .world-vision {
+      padding: 4rem 1.5rem;
+    }
+
+    .world-section-title {
+      font-size: 1.75rem;
+    }
+
+    .world-section-subtitle {
+      font-size: 1rem;
+    }
+
+    .world-values-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .world-story-text,
+    .world-heritage-text,
+    .world-tamil-text {
+      font-size: 1rem;
+    }
+
+    .world-vision-text {
+      font-size: 1.125rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .world-hero-title {
+      font-size: 1.5rem;
+    }
+
+    .world-hero-subtitle {
+      font-size: 0.95rem;
+    }
+
+    .world-section-title {
+      font-size: 1.5rem;
+    }
+
+    .world-story,
+    .world-values,
+    .world-heritage,
+    .world-tamil-section,
+    .world-vision {
+      padding: 3rem 1rem;
+    }
+
+    .world-cta-button {
+      width: 100%;
+      padding: 1rem 2rem;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "World of Ravan Luxe",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Hero Section"
+    },
+    {
+      "type": "text",
+      "id": "hero_title",
+      "label": "Hero Title",
+      "default": "World of Ravan Luxe"
+    },
+    {
+      "type": "textarea",
+      "id": "hero_subtitle",
+      "label": "Hero Subtitle",
+      "default": "Where Heritage Meets Contemporary Elegance"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero Background Image (Optional)"
+    },
+    {
+      "type": "header",
+      "content": "Brand Story Section"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_story",
+      "label": "Show Story Section",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "story_title",
+      "label": "Story Title",
+      "default": "Our Story"
+    },
+    {
+      "type": "richtext",
+      "id": "story_content",
+      "label": "Story Content",
+      "default": "<p>Ravan Luxe was born from a vision to celebrate the rich heritage of Tamil culture while embracing contemporary design sensibilities. Each piece in our collection tells a story of craftsmanship, tradition, and timeless elegance.</p><p>Our journey began with a deep appreciation for the intricate artistry and cultural richness that has been passed down through generations. We believe in creating pieces that transcend trends and become cherished parts of your wardrobe.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "story_image",
+      "label": "Story Image"
+    },
+    {
+      "type": "header",
+      "content": "Values Section"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_values",
+      "label": "Show Values Section",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "values_title",
+      "label": "Values Title",
+      "default": "Our Values"
+    },
+    {
+      "type": "textarea",
+      "id": "values_subtitle",
+      "label": "Values Subtitle",
+      "default": "The principles that guide everything we create"
+    },
+    {
+      "type": "text",
+      "id": "value_1_title",
+      "label": "Value 1 Title",
+      "default": "Craftsmanship"
+    },
+    {
+      "type": "select",
+      "id": "value_1_icon",
+      "label": "Value 1 Icon",
+      "options": [
+        {"value": "craftsmanship", "label": "Craftsmanship"},
+        {"value": "sustainability", "label": "Sustainability"},
+        {"value": "heritage", "label": "Heritage"},
+        {"value": "excellence", "label": "Excellence"}
+      ],
+      "default": "craftsmanship"
+    },
+    {
+      "type": "textarea",
+      "id": "value_1_text",
+      "label": "Value 1 Description",
+      "default": "Every piece is meticulously crafted by skilled artisans, honoring traditional techniques while embracing innovation."
+    },
+    {
+      "type": "text",
+      "id": "value_2_title",
+      "label": "Value 2 Title",
+      "default": "Heritage"
+    },
+    {
+      "type": "select",
+      "id": "value_2_icon",
+      "label": "Value 2 Icon",
+      "options": [
+        {"value": "craftsmanship", "label": "Craftsmanship"},
+        {"value": "sustainability", "label": "Sustainability"},
+        {"value": "heritage", "label": "Heritage"},
+        {"value": "excellence", "label": "Excellence"}
+      ],
+      "default": "heritage"
+    },
+    {
+      "type": "textarea",
+      "id": "value_2_text",
+      "label": "Value 2 Description",
+      "default": "We celebrate the rich cultural heritage of Tamil traditions, preserving timeless designs for future generations."
+    },
+    {
+      "type": "text",
+      "id": "value_3_title",
+      "label": "Value 3 Title",
+      "default": "Sustainability"
+    },
+    {
+      "type": "select",
+      "id": "value_3_icon",
+      "label": "Value 3 Icon",
+      "options": [
+        {"value": "craftsmanship", "label": "Craftsmanship"},
+        {"value": "sustainability", "label": "Sustainability"},
+        {"value": "heritage", "label": "Heritage"},
+        {"value": "excellence", "label": "Excellence"}
+      ],
+      "default": "sustainability"
+    },
+    {
+      "type": "textarea",
+      "id": "value_3_text",
+      "label": "Value 3 Description",
+      "default": "Committed to ethical practices and sustainable materials, ensuring our legacy respects both people and planet."
+    },
+    {
+      "type": "text",
+      "id": "value_4_title",
+      "label": "Value 4 Title",
+      "default": "Excellence"
+    },
+    {
+      "type": "select",
+      "id": "value_4_icon",
+      "label": "Value 4 Icon",
+      "options": [
+        {"value": "craftsmanship", "label": "Craftsmanship"},
+        {"value": "sustainability", "label": "Sustainability"},
+        {"value": "heritage", "label": "Heritage"},
+        {"value": "excellence", "label": "Excellence"}
+      ],
+      "default": "excellence"
+    },
+    {
+      "type": "textarea",
+      "id": "value_4_text",
+      "label": "Value 4 Description",
+      "default": "Uncompromising quality in every detail, from design conception to the finished piece you treasure."
+    },
+    {
+      "type": "header",
+      "content": "Heritage Section"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_heritage",
+      "label": "Show Heritage Section",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "heritage_title",
+      "label": "Heritage Title",
+      "default": "A Legacy of Excellence"
+    },
+    {
+      "type": "richtext",
+      "id": "heritage_content",
+      "label": "Heritage Content",
+      "default": "<p>For generations, the art of Tamil craftsmanship has been refined and perfected, creating pieces of extraordinary beauty and cultural significance. Ravan Luxe continues this proud tradition, working with master artisans who have inherited skills passed down through their families.</p><p>Each collection is a tribute to this heritage, blending time-honored techniques with contemporary design to create pieces that are both classic and modern, traditional yet innovative.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "heritage_image",
+      "label": "Heritage Image"
+    },
+    {
+      "type": "header",
+      "content": "Tamil Culture Section"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_tamil_motif",
+      "label": "Show Tamil Motif Section",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "tamil_title",
+      "label": "Tamil Section Title",
+      "default": "Tamil Heritage"
+    },
+    {
+      "type": "textarea",
+      "id": "tamil_subtitle",
+      "label": "Tamil Section Subtitle",
+      "default": "Celebrating the richness of Tamil culture and tradition"
+    },
+    {
+      "type": "richtext",
+      "id": "tamil_content",
+      "label": "Tamil Content",
+      "default": "<p>Tamil culture, with its thousands of years of history, has given the world exquisite art, literature, and craftsmanship. Our designs draw inspiration from classical Tamil motifs, temple architecture, and traditional jewelry, reinterpreting these elements for the modern era.</p><p>Every pattern, every detail carries meaning and connects us to a rich cultural tapestry that continues to inspire and enchant.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Vision Section"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vision",
+      "label": "Show Vision Section",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "vision_title",
+      "label": "Vision Title",
+      "default": "Our Vision"
+    },
+    {
+      "type": "richtext",
+      "id": "vision_content",
+      "label": "Vision Content",
+      "default": "<p>We envision a world where cultural heritage and contemporary design coexist beautifully, where craftsmanship is celebrated, and where every piece tells a story worth passing down through generations.</p>"
+    },
+    {
+      "type": "text",
+      "id": "vision_cta_text",
+      "label": "CTA Button Text",
+      "default": "Explore Our Collection"
+    },
+    {
+      "type": "url",
+      "id": "vision_cta_link",
+      "label": "CTA Button Link",
+      "default": "/collections/all"
+    }
+  ],
+  "presets": [
+    {
+      "name": "World of Ravan Luxe"
+    }
+  ]
+}
+{% endschema %}

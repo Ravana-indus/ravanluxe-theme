@@ -1,0 +1,44 @@
+{
+  "sections": {
+    "world-of-ravan": {
+      "type": "world-of-ravan",
+      "settings": {
+        "hero_title": "World of Ravan Luxe",
+        "hero_subtitle": "Where Heritage Meets Contemporary Elegance",
+        "show_story": true,
+        "story_title": "Our Story",
+        "story_content": "<p>Ravan Luxe was born from a vision to celebrate the rich heritage of Tamil culture while embracing contemporary design sensibilities. Each piece in our collection tells a story of craftsmanship, tradition, and timeless elegance.</p><p>Our journey began with a deep appreciation for the intricate artistry and cultural richness that has been passed down through generations. We believe in creating pieces that transcend trends and become cherished parts of your wardrobe.</p>",
+        "show_values": true,
+        "values_title": "Our Values",
+        "values_subtitle": "The principles that guide everything we create",
+        "value_1_title": "Craftsmanship",
+        "value_1_icon": "craftsmanship",
+        "value_1_text": "Every piece is meticulously crafted by skilled artisans, honoring traditional techniques while embracing innovation.",
+        "value_2_title": "Heritage",
+        "value_2_icon": "heritage",
+        "value_2_text": "We celebrate the rich cultural heritage of Tamil traditions, preserving timeless designs for future generations.",
+        "value_3_title": "Sustainability",
+        "value_3_icon": "sustainability",
+        "value_3_text": "Committed to ethical practices and sustainable materials, ensuring our legacy respects both people and planet.",
+        "value_4_title": "Excellence",
+        "value_4_icon": "excellence",
+        "value_4_text": "Uncompromising quality in every detail, from design conception to the finished piece you treasure.",
+        "show_heritage": true,
+        "heritage_title": "A Legacy of Excellence",
+        "heritage_content": "<p>For generations, the art of Tamil craftsmanship has been refined and perfected, creating pieces of extraordinary beauty and cultural significance. Ravan Luxe continues this proud tradition, working with master artisans who have inherited skills passed down through their families.</p><p>Each collection is a tribute to this heritage, blending time-honored techniques with contemporary design to create pieces that are both classic and modern, traditional yet innovative.</p>",
+        "show_tamil_motif": true,
+        "tamil_title": "Tamil Heritage",
+        "tamil_subtitle": "Celebrating the richness of Tamil culture and tradition",
+        "tamil_content": "<p>Tamil culture, with its thousands of years of history, has given the world exquisite art, literature, and craftsmanship. Our designs draw inspiration from classical Tamil motifs, temple architecture, and traditional jewelry, reinterpreting these elements for the modern era.</p><p>Every pattern, every detail carries meaning and connects us to a rich cultural tapestry that continues to inspire and enchant.</p>",
+        "show_vision": true,
+        "vision_title": "Our Vision",
+        "vision_content": "<p>We envision a world where cultural heritage and contemporary design coexist beautifully, where craftsmanship is celebrated, and where every piece tells a story worth passing down through generations.</p>",
+        "vision_cta_text": "Explore Our Collection",
+        "vision_cta_link": "/collections/all"
+      }
+    }
+  },
+  "order": [
+    "world-of-ravan"
+  ]
+}
