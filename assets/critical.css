@@ -1,4 +1,4 @@
-/** Critical CSS for Ravan Luxe - Premium Tamil Heritage Theme */
+/** Critical CSS for Ravan Luxe - Premium Tamil Heritage Theme (Gucci-inspired) */
 
 /* Reset styles inspired by https://www.joshwcomeau.com/css/custom-css-reset/ */
 * {
@@ -31,22 +31,26 @@ input,
 textarea,
 select {
   font: inherit;
-  border-radius: var(--style-border-radius-inputs);
-  border: 1px solid var(--color-foreground);
-  padding: 0.75rem 1rem;
-  transition: all 0.3s ease;
+  border-radius: 0;
+  border: 1.5px solid var(--color-foreground);
+  padding: 0.875rem 1.125rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: var(--color-background);
+  color: var(--color-foreground);
 }
 
 input:focus,
 textarea:focus,
 select:focus {
   outline: none;
-  border-color: var(--color-accent);
+  border-color: var(--color-foreground);
+  box-shadow: 0 0 0 1px var(--color-foreground);
 }
 
 select {
   background-color: var(--color-background);
   color: currentcolor;
+  cursor: pointer;
 }
 
 dialog {
@@ -81,67 +85,76 @@ p:empty {
   margin-block-end: 0;
 }
 
-/** Theme styles - Ravan Luxe Premium Design */
+/** Theme styles - Ravan Luxe Premium Design (Gucci-inspired) */
 body {
   font-family: var(--font-primary--family);
   background-color: var(--color-background);
   color: var(--color-foreground);
-  font-size: 16px;
-  line-height: 1.6;
-  letter-spacing: 0.02em;
+  font-size: 15px;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading--family);
-  font-weight: 400;
-  letter-spacing: 0.05em;
+  font-weight: 300;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
+  line-height: 1.2;
 }
 
 h1 {
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  margin-bottom: 1.5rem;
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  margin-bottom: 2rem;
+  font-weight: 300;
 }
 
 h2 {
-  font-size: clamp(2rem, 4vw, 3rem);
-  margin-bottom: 1.25rem;
+  font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+  margin-bottom: 1.75rem;
+  font-weight: 300;
 }
 
 h3 {
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  margin-bottom: 1rem;
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  margin-bottom: 1.25rem;
+  font-weight: 400;
 }
 
 a {
   color: inherit;
   text-decoration: none;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 a:hover {
-  opacity: 0.7;
+  opacity: 0.65;
 }
 
 button {
   font-family: var(--font-primary--family);
   background-color: var(--color-foreground);
   color: var(--color-background);
-  border: 1px solid var(--color-foreground);
-  padding: 1rem 2.5rem;
+  border: 1.5px solid var(--color-foreground);
+  padding: 0.875rem 2.25rem;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-size: 0.875rem;
+  letter-spacing: 0.12em;
+  font-size: 0.8125rem;
+  font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s ease;
-  border-radius: var(--style-border-radius-inputs);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 0;
+  min-height: 48px;
 }
 
 button:hover {
   background-color: var(--color-background);
   color: var(--color-foreground);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 button.button--secondary {
@@ -153,6 +166,7 @@ button.button--secondary {
 button.button--secondary:hover {
   background-color: var(--color-foreground);
   color: var(--color-background);
+  transform: translateY(-1px);
 }
 
 /** Section layout utilities */
@@ -261,4 +275,32 @@ button.button--secondary:hover {
     margin-left: auto;
     margin-right: auto;
   }
+}
+
+/** Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/** Focus states for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--color-foreground);
+  outline-offset: 2px;
+}
+
+/** Performance optimizations */
+img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
 }
