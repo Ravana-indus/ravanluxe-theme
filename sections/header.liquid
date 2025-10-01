@@ -57,9 +57,15 @@
   </div>
 
   <nav class="header__mobile-nav" id="mobileNav">
-    {% for link in section.settings.menu.links %}
-      <a href="{{ link.url }}" class="header__mobile-link">{{ link.title }}</a>
-    {% endfor %}
+    <div class="header__mobile-nav-container">
+      {% for link in section.settings.menu.links %}
+        <a href="{{ link.url }}" class="header__mobile-link">{{ link.title }}</a>
+      {% endfor %}
+
+      <div class="mobile-nav-footer">
+        <p>{{ shop.name }}</p>
+      </div>
+    </div>
   </nav>
 </header>
 
@@ -455,37 +461,68 @@
       lastScroll = currentScroll;
     });
 
-    // Hamburger menu functionality
+    // Enhanced mobile menu functionality
     if (menuToggle && mobileNav) {
+      // Toggle menu
       menuToggle.addEventListener('click', function(e) {
         e.preventDefault();
         e.stopPropagation();
-        mobileNav.classList.toggle('active');
 
-        // Toggle hamburger animation
-        this.classList.toggle('active');
-      });
+        const isActive = mobileNav.classList.contains('active');
 
-      // Close menu when clicking outside
-      document.addEventListener('click', function(e) {
-        if (mobileNav.classList.contains('active') &&
-            !mobileNav.contains(e.target) &&
-            !menuToggle.contains(e.target)) {
-          mobileNav.classList.remove('active');
-          menuToggle.classList.remove('active');
+        if (isActive) {
+          closeMenu();
+        } else {
+          openMenu();
         }
       });
+
+      // Open menu function
+      function openMenu() {
+        mobileNav.classList.add('active');
+        menuToggle.classList.add('active');
+        document.body.classList.add('mobile-nav-open');
+
+        // Prevent scroll on iOS
+        document.body.style.overflow = 'hidden';
+        document.body.style.position = 'fixed';
+        document.body.style.width = '100%';
+      }
+
+      // Close menu function
+      function closeMenu() {
+        mobileNav.classList.remove('active');
+        menuToggle.classList.remove('active');
+        document.body.classList.remove('mobile-nav-open');
+
+        // Restore scroll
+        document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.width = '';
+      }
 
       // Close menu when clicking on a link
       const mobileLinks = mobileNav.querySelectorAll('.header__mobile-link');
       mobileLinks.forEach(link => {
         link.addEventListener('click', function() {
-          mobileNav.classList.remove('active');
-          menuToggle.classList.remove('active');
+          // Small delay for smooth transition
+          setTimeout(closeMenu, 150);
         });
       });
-    } else {
-      console.error('Menu toggle or mobile nav not found');
+
+      // Close on escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && mobileNav.classList.contains('active')) {
+          closeMenu();
+        }
+      });
+
+      // Prevent body scroll when menu is open (additional iOS fix)
+      mobileNav.addEventListener('touchmove', function(e) {
+        if (e.target === mobileNav) {
+          e.preventDefault();
+        }
+      }, { passive: false });
     }
   })();
 {% endjavascript %}

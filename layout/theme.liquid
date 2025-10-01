@@ -13,6 +13,7 @@
     {{ 'luxury-enhancements.css' | asset_url | stylesheet_tag }}
     {{ 'page-optimizations.css' | asset_url | stylesheet_tag }}
     {{ 'mobile-optimizations.css' | asset_url | stylesheet_tag: media: '(max-width: 768px)' }}
+    {{ 'mobile-nav-overhaul.css' | asset_url | stylesheet_tag: media: '(max-width: 1024px)' }}
 
     {% # Performance: Preconnect to required domains %}
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
