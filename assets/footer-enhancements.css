@@ -20,9 +20,9 @@
   .footer__links {
     display: grid !important;
     grid-template-columns: repeat(3, 1fr) !important;
-    gap: 4rem !important;
-    margin-bottom: 3rem !important;
-    padding-bottom: 3rem !important;
+    gap: 2rem !important;
+    margin-bottom: 2.5rem !important;
+    padding-bottom: 2.5rem !important;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
   }
 
@@ -30,7 +30,7 @@
   .footer__menu {
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
+    gap: 0.875rem;
   }
 
   /* Footer Menu Titles - Light Luxury Typography */
@@ -39,7 +39,7 @@
     font-weight: 300 !important;
     letter-spacing: 0.12em !important;
     text-transform: uppercase !important;
-    margin-bottom: 1.5rem !important;
+    margin-bottom: 1rem !important;
     color: var(--color-foreground) !important;
     line-height: 1.2 !important;
   }
