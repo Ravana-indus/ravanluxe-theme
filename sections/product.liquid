@@ -242,7 +242,8 @@
     top: 100px;
     height: fit-content;
     border-left: 1px solid rgba(0, 0, 0, 0.1);
-    padding-left: 2rem;
+    padding-left: 1.5rem;
+    padding-right: 0;
   }
 
   .product-page-luxury__sidebar-content {
@@ -289,6 +290,7 @@
     text-transform: uppercase;
     margin-bottom: 0.75rem;
     color: var(--color-foreground);
+    text-align: center;
   }
 
   .product-option__buttons {
@@ -333,6 +335,7 @@
     text-transform: uppercase;
     margin-bottom: 0.75rem;
     color: var(--color-foreground);
+    text-align: center;
   }
 
   .product-quantity {
@@ -436,7 +439,7 @@
   }
 
   .accordion-summary {
-    padding: 1.5rem 0;
+    padding: 1.5rem 0.5rem;
     font-size: 0.875rem;
     letter-spacing: 0.05em;
     text-transform: uppercase;
@@ -451,7 +454,7 @@
   }
 
   .accordion-content {
-    padding-bottom: 1.5rem;
+    padding: 0 0.5rem 1.5rem 0.5rem;
     font-size: 0.875rem;
     line-height: 1.8;
     color: var(--color-foreground);
@@ -494,9 +497,15 @@
 
   @media (max-width: 768px) {
     .product-page-luxury {
-      padding: 1.5rem 1rem;
-      width: 100%;
-      margin: 0;
+      padding: 1.5rem 0 !important;
+      width: 100% !important;
+      margin: 0 !important;
+      max-width: 100% !important;
+    }
+
+    .product-page-luxury__sidebar {
+      padding: 0 1rem !important;
+      border: none !important;
     }
 
     .product-page-luxury h1,
@@ -505,7 +514,7 @@
     .product-page-luxury p,
     .product-page-luxury .product-header__title,
     .product-page-luxury .product-header__description {
-      max-width: 98%;
+      max-width: 100%;
       margin-left: auto;
       margin-right: auto;
       text-align: center;
@@ -518,6 +527,30 @@
     .option-button {
       padding: 0.625rem 1.25rem;
       font-size: 0.8125rem;
+    }
+
+    .product-option__label,
+    .product-quantity__label {
+      text-align: center;
+    }
+
+    .product-option__buttons {
+      justify-content: center;
+    }
+
+    .quantity-selector {
+      margin: 0 auto;
+    }
+
+    .product-submit {
+      margin: 0 auto;
+      max-width: 100%;
+    }
+
+    .accordion-summary,
+    .accordion-content {
+      padding-left: 0;
+      padding-right: 0;
     }
   }
 {% endstylesheet %}

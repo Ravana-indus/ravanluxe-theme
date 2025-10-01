@@ -216,8 +216,8 @@ button.button--secondary:hover {
   }
 
   /* Global mobile padding override for any remaining elements */
-  [class*="__container"],
-  [class*="page"],
+  [class*="__container"]:not(.cart-page__container),
+  [class*="page"]:not(.cart-page),
   [class*="section"] {
     padding-left: 0 !important;
     padding-right: 0 !important;
@@ -227,22 +227,21 @@ button.button--secondary:hover {
   }
 
   /* Override any var(--page-margin) usage in mobile */
-  * {
+  :root {
     --page-margin: 0 !important;
   }
 
   /* Text content max-width constraints for readability */
-  h1, h2, h3, h4, h5, h6,
-  p, span, div,
+  h1:not(.cart-page__title),
+  h2, h3, h4, h5, h6,
+  p, span,
   .header__logo-text,
   .header__tagline,
   .footer__logo,
   .footer__tagline,
   .footer__story,
   .footer__menu,
-  .product-page-luxury,
-  .cart-page__title,
-  .cart-page__empty {
+  .product-page-luxury {
     max-width: 98% !important;
     margin-left: auto !important;
     margin-right: auto !important;
@@ -251,15 +250,13 @@ button.button--secondary:hover {
   /* Specific text containers with better readability */
   .header__container,
   .footer__container,
-  .product-page-luxury,
-  .cart-page__container {
+  .product-page-luxury {
     text-align: center;
   }
 
   .header__container > *,
   .footer__container > *,
-  .product-page-luxury > *,
-  .cart-page__container > * {
+  .product-page-luxury > * {
     max-width: 98%;
     margin-left: auto;
     margin-right: auto;
