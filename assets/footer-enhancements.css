@@ -1,0 +1,613 @@
+/** Footer Enhancements - Gucci-Inspired Luxury Design */
+
+/* ==========================================================================
+   DESKTOP FOOTER ENHANCEMENTS
+   ========================================================================== */
+
+@media (min-width: 769px) {
+  /* Footer Container - Enhanced Spacing */
+  .footer {
+    padding: 5rem 0 3rem 0 !important;
+  }
+
+  .footer__container {
+    max-width: var(--page-width);
+    margin: 0 auto;
+    padding: 0 var(--page-margin);
+  }
+
+  /* Footer Grid - 3 Column Layout for Menu Links */
+  .footer__links {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 4rem !important;
+    margin-bottom: 3rem !important;
+    padding-bottom: 3rem !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+  }
+
+  /* Individual Footer Menu Columns */
+  .footer__menu {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  /* Footer Menu Titles - Light Luxury Typography */
+  .footer__menu-title {
+    font-size: 0.9375rem !important;
+    font-weight: 300 !important;
+    letter-spacing: 0.12em !important;
+    text-transform: uppercase !important;
+    margin-bottom: 1.5rem !important;
+    color: var(--color-foreground) !important;
+    line-height: 1.2 !important;
+  }
+
+  /* Footer Menu Links - Refined Typography */
+  .footer__menu-link {
+    font-size: 0.875rem !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.05em !important;
+    color: var(--color-foreground) !important;
+    text-decoration: none !important;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    display: inline-block !important;
+    position: relative !important;
+    line-height: 1.6 !important;
+  }
+
+  /* Elegant Underline Hover Animation */
+  .footer__menu-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: var(--color-foreground);
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .footer__menu-link:hover::after {
+    width: 100%;
+  }
+
+  .footer__menu-link:hover {
+    opacity: 0.65 !important;
+    transform: translateX(3px) !important;
+  }
+
+  /* Social Icons - Separate Centered Row Below Menu Links */
+  .footer__social {
+    grid-column: 1 / -1 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 2rem !important;
+    padding: 2.5rem 0 !important;
+    margin: 0 !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+  }
+
+  /* Social Icon Links - Sharp Luxury Styling */
+  .footer__social-link {
+    width: 42px !important;
+    height: 42px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border: 1.5px solid var(--color-foreground) !important;
+    border-radius: 0 !important; /* Sharp edges for luxury */
+    background-color: transparent !important;
+    color: var(--color-foreground) !important;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+
+  .footer__social-link:hover {
+    background-color: var(--color-foreground) !important;
+    color: var(--color-background) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+  }
+
+  .footer__social-link svg {
+    width: 18px !important;
+    height: 18px !important;
+    fill: currentColor !important;
+  }
+
+  /* Newsletter Section - Enhanced Styling */
+  .footer__newsletter {
+    padding: 3rem 0 2.5rem 0 !important;
+    text-align: center !important;
+    max-width: 600px !important;
+    margin: 0 auto !important;
+  }
+
+  .footer__newsletter-title {
+    font-size: 1.125rem !important;
+    font-weight: 300 !important;
+    letter-spacing: 0.12em !important;
+    text-transform: uppercase !important;
+    margin-bottom: 1rem !important;
+    color: var(--color-foreground) !important;
+  }
+
+  .footer__newsletter-text {
+    font-size: 0.875rem !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.02em !important;
+    margin-bottom: 2rem !important;
+    opacity: 0.8 !important;
+    line-height: 1.7 !important;
+  }
+
+  /* Newsletter Form - Sharp Luxury Styling */
+  .footer__newsletter-form {
+    display: flex !important;
+    gap: 0 !important;
+    max-width: 500px !important;
+    margin: 0 auto !important;
+  }
+
+  .footer__newsletter-input {
+    flex: 1 !important;
+    padding: 1rem 1.25rem !important;
+    border: 1.5px solid var(--color-foreground) !important;
+    border-right: none !important;
+    border-radius: 0 !important; /* Sharp edges */
+    background-color: var(--color-background) !important;
+    color: var(--color-foreground) !important;
+    font-size: 0.875rem !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.02em !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+
+  .footer__newsletter-input:focus {
+    outline: none !important;
+    border-color: var(--color-foreground) !important;
+    box-shadow: inset 0 0 0 1px var(--color-foreground) !important;
+  }
+
+  .footer__newsletter-input::placeholder {
+    color: rgba(0, 0, 0, 0.4) !important;
+    font-weight: 300 !important;
+  }
+
+  .footer__newsletter-button {
+    padding: 1rem 2.5rem !important;
+    background-color: var(--color-foreground) !important;
+    color: var(--color-background) !important;
+    border: 1.5px solid var(--color-foreground) !important;
+    border-radius: 0 !important; /* Sharp edges */
+    font-size: 0.8125rem !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.12em !important;
+    text-transform: uppercase !important;
+    cursor: pointer !important;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    white-space: nowrap !important;
+  }
+
+  .footer__newsletter-button:hover {
+    background-color: var(--color-background) !important;
+    color: var(--color-foreground) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+  }
+
+  /* Footer Bottom - Brand Info and Legal */
+  .footer__bottom {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding-top: 2.5rem !important;
+    border-top: 1px solid rgba(0, 0, 0, 0.1) !important;
+  }
+
+  .footer__brand {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .footer__logo {
+    font-size: 1.125rem !important;
+    font-weight: 300 !important;
+    letter-spacing: 0.15em !important;
+    text-transform: uppercase !important;
+    color: var(--color-foreground) !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .footer__tagline {
+    font-size: 0.8125rem !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.05em !important;
+    opacity: 0.7 !important;
+    font-style: italic !important;
+  }
+
+  .footer__copyright {
+    font-size: 0.8125rem !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.02em !important;
+    opacity: 0.6 !important;
+  }
+
+  /* Payment Icons - Sharp Styling */
+  .footer__payment-icons {
+    display: flex !important;
+    gap: 0.75rem !important;
+    align-items: center !important;
+  }
+
+  .footer__payment-icon {
+    width: 40px !important;
+    height: 26px !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    border-radius: 0 !important; /* Sharp edges */
+    padding: 4px !important;
+    background-color: var(--color-background) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .footer__payment-icon img {
+    max-width: 100% !important;
+    max-height: 100% !important;
+    object-fit: contain !important;
+  }
+
+  /* Accessibility - Focus States */
+  .footer__menu-link:focus-visible,
+  .footer__social-link:focus-visible,
+  .footer__newsletter-button:focus-visible {
+    outline: 2px solid var(--color-foreground) !important;
+    outline-offset: 3px !important;
+  }
+
+  .footer__newsletter-input:focus-visible {
+    outline: 2px solid var(--color-foreground) !important;
+    outline-offset: 2px !important;
+  }
+}
+
+/* ==========================================================================
+   TABLET FOOTER ENHANCEMENTS (769px - 1024px)
+   ========================================================================== */
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .footer__links {
+    gap: 3rem !important;
+  }
+
+  .footer__newsletter {
+    max-width: 550px !important;
+  }
+
+  .footer__bottom {
+    flex-direction: column !important;
+    gap: 2rem !important;
+    text-align: center !important;
+  }
+
+  .footer__payment-icons {
+    justify-content: center !important;
+  }
+}
+
+/* ==========================================================================
+   MOBILE FOOTER ENHANCEMENTS
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  /* Footer Container - Full Width Mobile */
+  .footer {
+    padding: 3rem 0 2rem 0 !important;
+    width: 100% !important;
+  }
+
+  .footer__container {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 1rem !important;
+    margin: 0 !important;
+  }
+
+  /* Footer Links - Single Column Centered */
+  .footer__links {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2.5rem !important;
+    margin-bottom: 2.5rem !important;
+    padding-bottom: 2.5rem !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+    text-align: center !important;
+    width: 100% !important;
+  }
+
+  /* Footer Menu - Centered Mobile Layout */
+  .footer__menu {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    max-width: 98%;
+    margin: 0 auto;
+  }
+
+  /* Footer Menu Titles - Mobile Typography */
+  .footer__menu-title {
+    font-size: 0.9375rem !important;
+    font-weight: 300 !important;
+    letter-spacing: 0.12em !important;
+    text-transform: uppercase !important;
+    margin-bottom: 1rem !important;
+    color: var(--color-foreground) !important;
+  }
+
+  /* Footer Menu Links - Mobile Typography */
+  .footer__menu-link {
+    font-size: 0.875rem !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.05em !important;
+    color: var(--color-foreground) !important;
+    text-decoration: none !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    display: inline-block !important;
+    padding: 0.5rem 1rem !important;
+    min-height: 44px !important; /* Touch target */
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  .footer__menu-link:active {
+    opacity: 0.65 !important;
+    transform: scale(0.98) !important;
+  }
+
+  /* Social Icons - Mobile Centered Row */
+  .footer__social {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 1.5rem !important;
+    padding: 2rem 0 !important;
+    margin: 0 !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+    width: 100% !important;
+  }
+
+  /* Social Icon Links - Mobile Touch Targets */
+  .footer__social-link {
+    width: 48px !important; /* Larger touch target */
+    height: 48px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border: 1.5px solid var(--color-foreground) !important;
+    border-radius: 0 !important; /* Sharp edges */
+    background-color: transparent !important;
+    color: var(--color-foreground) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+
+  .footer__social-link:active {
+    background-color: var(--color-foreground) !important;
+    color: var(--color-background) !important;
+    transform: scale(0.95) !important;
+  }
+
+  .footer__social-link svg {
+    width: 20px !important;
+    height: 20px !important;
+    fill: currentColor !important;
+  }
+
+  /* Newsletter Section - Mobile Centered */
+  .footer__newsletter {
+    padding: 2.5rem 0 2rem 0 !important;
+    text-align: center !important;
+    width: 100% !important;
+    max-width: 98% !important;
+    margin: 0 auto !important;
+  }
+
+  .footer__newsletter-title {
+    font-size: 1rem !important;
+    font-weight: 300 !important;
+    letter-spacing: 0.12em !important;
+    text-transform: uppercase !important;
+    margin-bottom: 0.75rem !important;
+    color: var(--color-foreground) !important;
+  }
+
+  .footer__newsletter-text {
+    font-size: 0.875rem !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.02em !important;
+    margin-bottom: 1.5rem !important;
+    opacity: 0.8 !important;
+    line-height: 1.7 !important;
+  }
+
+  /* Newsletter Form - Mobile Stacked Layout */
+  .footer__newsletter-form {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
+
+  .footer__newsletter-input {
+    width: 100% !important;
+    padding: 1rem 1.25rem !important;
+    border: 1.5px solid var(--color-foreground) !important;
+    border-radius: 0 !important; /* Sharp edges */
+    background-color: var(--color-background) !important;
+    color: var(--color-foreground) !important;
+    font-size: 16px !important; /* Prevent iOS zoom */
+    font-weight: 400 !important;
+    letter-spacing: 0.02em !important;
+    min-height: 48px !important; /* Touch target */
+  }
+
+  .footer__newsletter-input:focus {
+    outline: none !important;
+    border-color: var(--color-foreground) !important;
+    box-shadow: inset 0 0 0 1px var(--color-foreground) !important;
+  }
+
+  .footer__newsletter-button {
+    width: 100% !important;
+    padding: 1rem 2rem !important;
+    background-color: var(--color-foreground) !important;
+    color: var(--color-background) !important;
+    border: 1.5px solid var(--color-foreground) !important;
+    border-radius: 0 !important; /* Sharp edges */
+    font-size: 0.8125rem !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.12em !important;
+    text-transform: uppercase !important;
+    cursor: pointer !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    min-height: 48px !important; /* Touch target */
+  }
+
+  .footer__newsletter-button:active {
+    background-color: var(--color-background) !important;
+    color: var(--color-foreground) !important;
+    transform: scale(0.98) !important;
+  }
+
+  /* Footer Bottom - Mobile Stacked Layout */
+  .footer__bottom {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2rem !important;
+    padding-top: 2rem !important;
+    border-top: 1px solid rgba(0, 0, 0, 0.1) !important;
+    text-align: center !important;
+    width: 100% !important;
+    max-width: 98% !important;
+    margin: 0 auto !important;
+  }
+
+  .footer__brand {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: center;
+  }
+
+  .footer__logo {
+    font-size: 1rem !important;
+    font-weight: 300 !important;
+    letter-spacing: 0.15em !important;
+    text-transform: uppercase !important;
+    color: var(--color-foreground) !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .footer__tagline {
+    font-size: 0.8125rem !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.05em !important;
+    opacity: 0.7 !important;
+    font-style: italic !important;
+  }
+
+  .footer__copyright {
+    font-size: 0.8125rem !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.02em !important;
+    opacity: 0.6 !important;
+  }
+
+  /* Payment Icons - Mobile Centered */
+  .footer__payment-icons {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 0.75rem !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  .footer__payment-icon {
+    width: 40px !important;
+    height: 26px !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    border-radius: 0 !important; /* Sharp edges */
+    padding: 4px !important;
+    background-color: var(--color-background) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .footer__payment-icon img {
+    max-width: 100% !important;
+    max-height: 100% !important;
+    object-fit: contain !important;
+  }
+}
+
+/* ==========================================================================
+   ACCESSIBILITY ENHANCEMENTS
+   ========================================================================== */
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .footer__menu-link,
+  .footer__social-link,
+  .footer__newsletter-button,
+  .footer__newsletter-input {
+    transition-duration: 0.01ms !important;
+  }
+
+  .footer__menu-link::after {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .footer__menu-link,
+  .footer__social-link,
+  .footer__newsletter-input,
+  .footer__newsletter-button {
+    border-width: 2px !important;
+  }
+}
+
+/* Focus Visible - Modern Focus States */
+.footer__menu-link:focus-visible,
+.footer__social-link:focus-visible,
+.footer__newsletter-button:focus-visible,
+.footer__newsletter-input:focus-visible {
+  outline: 2px solid var(--color-foreground) !important;
+  outline-offset: 3px !important;
+}
+
+/* ==========================================================================
+   PERFORMANCE OPTIMIZATIONS
+   ========================================================================== */
+
+/* GPU Acceleration for Animations */
+.footer__menu-link,
+.footer__social-link,
+.footer__newsletter-button {
+  will-change: transform, opacity;
+}
+
+/* Optimize Repaints */
+.footer__menu-link::after {
+  will-change: width;
+  content-visibility: auto;
+}
